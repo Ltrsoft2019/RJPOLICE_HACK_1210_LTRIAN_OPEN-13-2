@@ -76,6 +76,7 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gmap = googleMap;
+        Toast.makeText(getContext(), "on map called", Toast.LENGTH_SHORT).show();
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -88,13 +89,15 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
             }, 200);
             return;
         }
+
         gmap.setMyLocationEnabled(true);
         gmap.getUiSettings().setCompassEnabled(true);
         gmap.getUiSettings().setZoomControlsEnabled(true);
-        fetchMyLocation();
+
+      //  fetchMyLocation();
     }
     private void fetchMyLocation() {
-        Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "in function", Toast.LENGTH_SHORT).show();
         Location location;
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
