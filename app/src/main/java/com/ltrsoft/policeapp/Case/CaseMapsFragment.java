@@ -40,7 +40,6 @@ import java.util.ArrayList;
 public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, RoutingListener {
     public CaseMapsFragment() {
     }
-
     GoogleMap gmap;
     FusedLocationProviderClient client;
     public Double usrLat, userLong;
@@ -74,7 +73,6 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
         client = LocationServices.getFusedLocationProviderClient(getContext());
         return view;
     }
-
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gmap = googleMap;
@@ -95,8 +93,8 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
         gmap.getUiSettings().setZoomControlsEnabled(true);
         fetchMyLocation();
     }
-
     private void fetchMyLocation() {
+        Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
         Location location;
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -111,6 +109,7 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
+                location=location;
                 usrLat = location.getLatitude();
                 userLong = location.getLongitude();
                 userLocation=new LatLng(usrLat,userLong);
@@ -119,8 +118,8 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
                         .zoom(16f)
                         .target(latLng)
                         .build();
+                Toast.makeText(getContext(), "location ="+usrLat+","+userLong, Toast.LENGTH_SHORT).show();
                 gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Latur");
                 gmap.addMarker(markerOptions);
             }
