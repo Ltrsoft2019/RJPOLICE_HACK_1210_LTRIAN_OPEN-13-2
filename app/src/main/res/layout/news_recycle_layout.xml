@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.card.MaterialCardView
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/black"
+        android:backgroundTint="#EDE1D8"
+        android:id="@+id/card"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="350dp"
+        android:layout_height="245dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/newsimg"
+            android:src="@drawable/newssample"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/black"
+                android:backgroundTint="#F6F8FA"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/border"
+                app:cardCornerRadius="0dp"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="201dp">
+
+                <ImageView
+                    android:id="@+id/like"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/like"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="160dp"
+                    android:id="@+id/share"
+                    android:src="@drawable/share"/>
+
+                <ImageView
+                    android:id="@+id/comment"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="300dp"
+                    android:src="@drawable/baseline_comment_24"/>
+
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

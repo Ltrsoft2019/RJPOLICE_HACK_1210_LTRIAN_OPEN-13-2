@@ -1,4 +1,4 @@
-package com.ltrsoft.policeapp;
+package com.ltrsoft.policeapp.LoinRegistration;
 
 import android.os.Bundle;
 
@@ -8,14 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FeedBackFragment extends Fragment {
-    public FeedBackFragment() {
-        // Required empty public constructor
-    }
+import com.ltrsoft.policeapp.R;
+public class ForgetPassFragment extends Fragment {
+    public ForgetPassFragment() {}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.feed_back_fragment, container, false);
-        return view;
+        View view = inflater.inflate(R.layout.forget_pass_fragment, container, false);
+        return  view;
     }
 }

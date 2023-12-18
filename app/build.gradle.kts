@@ -46,4 +46,9 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.github.jd-alexander:library:1.1.0")
+    implementation("com.google.maps:google-maps-services:0.17.0")
+    implementation("com.google.maps.android:poly-util:1.1.0")
+    implementation("com.google.android.material:material:1.1.0")
 }

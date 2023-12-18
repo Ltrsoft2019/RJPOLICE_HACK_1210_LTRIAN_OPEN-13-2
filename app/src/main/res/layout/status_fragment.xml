@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DashBoard.StatusFragment">
+    tools:context=".Status.StatusFragment">
 
  <com.google.android.material.bottomnavigation.BottomNavigationView
      android:id="@+id/status_navigation"

@@ -1,4 +1,4 @@
-package com.ltrsoft.policeapp.loinRegistration;
+package com.ltrsoft.policeapp.LoinRegistration;
 
 import android.os.Bundle;
 

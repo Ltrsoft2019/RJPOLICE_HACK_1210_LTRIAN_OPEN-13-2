@@ -15,10 +15,6 @@
         android:icon="@drawable/email_1"
         android:title="Messages" />
     <item
-        android:id="@+id/feedback"
-        android:icon="@drawable/feedback1"
-        android:title="Feedback"/>
-    <item
         android:id="@+id/user"
         android:icon="@drawable/profile_logo_3_removebg_preview"
         android:title="profile" />

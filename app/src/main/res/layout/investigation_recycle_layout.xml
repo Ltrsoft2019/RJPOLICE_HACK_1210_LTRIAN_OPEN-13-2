@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_marginTop="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/invst_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:textSize="20dp"
+        android:text="Investigation_name"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/invst_id"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:textSize="20dp"
+        android:text="Investigation_id"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/invst_location"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:text="Investigation_loc"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/invst_time"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:text="Investigation_time"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

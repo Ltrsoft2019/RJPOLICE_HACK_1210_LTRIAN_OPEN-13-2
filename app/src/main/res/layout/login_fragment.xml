@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".loinRegistration.LoginFragment">
+    tools:context=".LoinRegistration.LoginFragment">
 
    <Button
        android:layout_marginTop="250dp"
