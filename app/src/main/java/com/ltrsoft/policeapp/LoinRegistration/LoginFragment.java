@@ -34,9 +34,9 @@ public class LoginFragment extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_container,new RegistrationFragment())
-                        .commit();*/
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.main_container,new RegistrationFragment())
+//                        .commit();
             }
         });
         return view;
