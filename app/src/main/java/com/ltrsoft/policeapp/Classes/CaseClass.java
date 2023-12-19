@@ -3,44 +3,35 @@ package com.ltrsoft.policeapp.Classes;
 import java.io.Serializable;
 
 public class CaseClass implements Serializable {
-    String id,name,location,time;
+   private String complain_name,crime_type,crime_status;
 
-    public String getId() {
-        return id;
+    public CaseClass(String complain_name, String crime_type, String crime_status) {
+        this.complain_name = complain_name;
+        this.crime_type = crime_type;
+        this.crime_status = crime_status;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getComplain_name() {
+        return complain_name;
     }
 
-    public String getName() {
-        return name;
+    public void setComplain_name(String complain_name) {
+        this.complain_name = complain_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCrime_type() {
+        return crime_type;
     }
 
-    public String getLocation() {
-        return location;
+    public void setCrime_type(String crime_type) {
+        this.crime_type = crime_type;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public String getCrime_status() {
+        return crime_status;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public CaseClass(String id, String name, String location, String time) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.time = time;
+    public void setCrime_status(String crime_status) {
+        this.crime_status = crime_status;
     }
 }

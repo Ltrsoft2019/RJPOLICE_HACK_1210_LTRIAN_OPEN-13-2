@@ -20,7 +20,7 @@ public class RegistrationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.registration_fragment, container, false);
         Toast.makeText(getContext(), "this is register frgment", Toast.LENGTH_SHORT).show();
-        register=view.findViewById(R.id.register);
+      /*  register=view.findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,7 +29,7 @@ public class RegistrationFragment extends Fragment {
                         .replace(R.id.main_container, new LoginFragment())
                         .commit();
             }
-        });
+        });*/
 
         return view;
     }

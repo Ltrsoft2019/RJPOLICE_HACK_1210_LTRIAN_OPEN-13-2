@@ -34,23 +34,22 @@ public class CaseAdapter extends RecyclerView.Adapter<CaseAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CaseClass caseClass = list.get(position);
-        holder.case_id.setText(caseClass.getId());
-        holder.case_name.setText(caseClass.getName());
-        holder.case_location.setText(caseClass.getLocation());
-        holder.case_time.setText(caseClass.getTime());
+        holder.complain_name.setText(caseClass.getComplain_name());
+        holder.crime_type.setText(caseClass.getCrime_type());
+        holder.crime_status.setText(caseClass.getCrime_status());
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity=(AppCompatActivity)view.getContext();
                 CaseDetailFragment detailFragment = new CaseDetailFragment();
                 Bundle b = new Bundle();
-                b.putString("case_name", caseClass.getName());
-                b.putString("case_id", caseClass.getId());
-                b.putString("case_location", caseClass.getLocation());
-                b.putString("case_time", caseClass.getTime());
+                b.putString("complain_name", caseClass.getComplain_name());
+                b.putString("crime_type", caseClass.getCrime_type());
+                b.putString("crime_status", caseClass.getCrime_status());
                 detailFragment.setArguments(b);
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, detailFragment)
+                        .addToBackStack(null)
                         .commit();
             }
         });
@@ -60,15 +59,14 @@ public class CaseAdapter extends RecyclerView.Adapter<CaseAdapter.ViewHolder> {
     public int getItemCount() {return list.size();}
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView case_name,case_id,case_location,case_time;
+        public TextView complain_name,crime_type,crime_status;
         public LinearLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            case_id = itemView.findViewById(R.id.case_id);
-            case_name = itemView.findViewById(R.id.case_name);
-            case_location = itemView.findViewById(R.id.case_location);
-            case_time = itemView.findViewById(R.id.case_time);
+            complain_name = itemView.findViewById(R.id.complain_name);
+             crime_type= itemView.findViewById(R.id.crime_type);
+            crime_status = itemView.findViewById(R.id.crime_status);
             layout=itemView.findViewById(R.id.case_layout);
         }
     }

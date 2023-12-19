@@ -3,6 +3,7 @@ package com.ltrsoft.policeapp.Case;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -13,11 +14,16 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
+import com.codebyashish.googledirectionapi.AbstractRouting;
+import com.codebyashish.googledirectionapi.ErrorHandling;
+import com.codebyashish.googledirectionapi.RouteDrawing;
+import com.codebyashish.googledirectionapi.RouteInfoModel;
+import com.codebyashish.googledirectionapi.RouteListener;
 import com.directions.route.Route;
 import com.directions.route.RouteException;
 import com.directions.route.RoutingListener;
@@ -31,18 +37,21 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.RoundCap;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.ltrsoft.policeapp.R;
 
 import java.util.ArrayList;
 
-public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, RoutingListener {
-    public CaseMapsFragment() {
-    }
+public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,RouteListener {
+    public CaseMapsFragment() {}
     GoogleMap gmap;
     FusedLocationProviderClient client;
-    public Double usrLat, userLong;
+    public Double usrLat=180.9787;
+    public AppCompatActivity activity;
+    public Double userLong=120.787;
     public LatLng destinationlocation, userLocation;
     private ArrayList<Polyline> polylines = null;
 
@@ -51,11 +60,12 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
         View view = inflater.inflate(R.layout.case_maps_fragment, container, false);
 
         Bundle b = getArguments();
-        destinationlocation = new LatLng((Double) b.get("lattitude"), (Double) b.get("longitude"));
+        double lat=b.getDouble("lattitude");
+        double lon = b.getDouble("longitude");
+        destinationlocation = new LatLng(lat,lon);
+        activity = (AppCompatActivity) view.getContext();
 
-        AppCompatActivity activity = (AppCompatActivity) view.getContext();
-
-        SupportMapFragment mapFragment = (SupportMapFragment) activity.getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -66,8 +76,7 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
                     Manifest.permission.ACCESS_COARSE_LOCATION
             }, 200);
         }
-     //   mapFragment.getMapAsync(this);
-        if (mapFragment != null) {
+       if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
         client = LocationServices.getFusedLocationProviderClient(getContext());
@@ -76,7 +85,17 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gmap = googleMap;
-        Toast.makeText(getContext(), "on map called", Toast.LENGTH_SHORT).show();
+        LatLng latLng = new LatLng(usrLat,userLong);
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .zoom(16f)
+                .target(latLng)
+                .build();
+        gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Latur");
+        gmap.addMarker(markerOptions);
+
+
+
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -90,15 +109,33 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
             return;
         }
 
+
         gmap.setMyLocationEnabled(true);
         gmap.getUiSettings().setCompassEnabled(true);
         gmap.getUiSettings().setZoomControlsEnabled(true);
-
-      //  fetchMyLocation();
+       fetchMyLocation();
+     //   getRoute(userLocation,destinationlocation);
     }
+
+    private void getRoute(LatLng userLocation, LatLng destinationlocation) {
+        if (userLocation!=null&&destinationlocation!=null) {
+            RouteDrawing routeDrawing = new RouteDrawing.Builder()
+                    .context(getContext())  // pass your activity or fragment's context
+                    .travelMode(AbstractRouting.TravelMode.DRIVING)
+                    .alternativeRoutes(true)
+                    .withListener(this)
+                    .waypoints(userLocation, destinationlocation)
+                    .alternativeRoutes(true)
+                    .build();
+            routeDrawing.execute();
+        }
+        else {
+            Toast.makeText(activity, "null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void fetchMyLocation() {
-        Toast.makeText(getContext(), "in function", Toast.LENGTH_SHORT).show();
-        Location location;
+       // Toast.makeText(getContext(), "in function", Toast.LENGTH_SHORT).show();
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),new String[]{
@@ -112,7 +149,6 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                location=location;
                 usrLat = location.getLatitude();
                 userLong = location.getLongitude();
                 userLocation=new LatLng(usrLat,userLong);
@@ -121,31 +157,50 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback, Ro
                         .zoom(16f)
                         .target(latLng)
                         .build();
-                Toast.makeText(getContext(), "location ="+usrLat+","+userLong, Toast.LENGTH_SHORT).show();
+           //       Toast.makeText(getContext(), "location ="+userLocation.longitude+","+userLong, Toast.LENGTH_SHORT).show();
                 gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Latur");
                 gmap.addMarker(markerOptions);
+                getRoute(userLocation,destinationlocation);
             }
         });
     }
 
     @Override
-    public void onRoutingFailure(RouteException e) {
-        Toast.makeText(getContext(), "routfailure"+e.getMessage(), Toast.LENGTH_SHORT).show();
+    public void onRouteFailure(ErrorHandling e) {
+        Log.e("error","err="+e.getMessage());
+        Toast.makeText(activity, "route failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onRoutingStart() {
-        Toast.makeText(getContext(), "route started", Toast.LENGTH_SHORT).show();
+    public void onRouteStart() {
+        Toast.makeText(activity, "route started", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onRoutingSuccess(ArrayList<Route> arrayList, int i) {
-
+    public void onRouteSuccess(ArrayList<RouteInfoModel> list, int indexing) {
+        Toast.makeText(activity, "route succed", Toast.LENGTH_SHORT).show();
+        if (polylines != null) {
+            polylines.clear();
+        }
+        PolylineOptions polylineOptions = new PolylineOptions();
+        ArrayList<Polyline> polylines = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (i == indexing) {
+                Log.e("TAG", "onRoutingSuccess: routeIndexing" + indexing);
+                polylineOptions.color(Color.BLUE);
+                polylineOptions.width(8);
+                polylineOptions.addAll(list.get(indexing).getPoints());
+                polylineOptions.startCap(new RoundCap());
+                polylineOptions.endCap(new RoundCap());
+                Polyline polyline = gmap.addPolyline(polylineOptions);
+                polylines.add(polyline);
+            }
+        }
     }
 
     @Override
-    public void onRoutingCancelled() {
-        Toast.makeText(getContext(), "route cacled", Toast.LENGTH_SHORT).show();
+    public void onRouteCancelled() {
+        Toast.makeText(activity, "route cancled", Toast.LENGTH_SHORT).show();
     }
 }

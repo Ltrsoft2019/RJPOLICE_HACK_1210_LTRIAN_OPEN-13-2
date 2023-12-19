@@ -52,5 +52,6 @@ dependencies {
     implementation("com.google.maps:google-maps-services:0.17.0")
     implementation("com.google.android.material:material:1.11.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.github.dangiashish:Google-Direction-Api:1.6")
 
 }

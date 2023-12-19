@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
-                app:strokeWidth="2dp"
+                app:strokeWidth="1dp"
                 app:strokeColor="@color/black"
                 android:backgroundTint="#F6F8FA"
                 android:layout_centerHorizontal="true"

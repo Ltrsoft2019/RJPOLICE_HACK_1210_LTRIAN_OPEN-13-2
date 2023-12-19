@@ -1,40 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/case_layout"
+<LinearLayout android:id="@+id/case_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/case_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:textSize="20dp"
-        android:text="case_name"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/case_id"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:textSize="20dp"
-        android:text="case_name"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/case_location"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:text="case_name"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/case_time"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:text="case_name"
-        android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginRight="35dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="32dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compainer Name :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/complain_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="20dp"
+            android:foregroundTint="#DF6060"
+            android:text="Rajesh mutuswami chnnaswa "
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crime Type :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crime Type :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"/>
+
+        <TextView
+            android:id="@+id/crime_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="80dp"
+            android:text="Murder"
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="140dp"/>
+
+        <TextView
+            android:id="@+id/crime_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="170dp"
+            android:layout_marginBottom="33dp"
+            android:text="Pending"
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
