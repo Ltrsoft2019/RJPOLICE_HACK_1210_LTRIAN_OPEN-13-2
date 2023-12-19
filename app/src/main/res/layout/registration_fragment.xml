@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.732" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/reg1_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
@@ -172,7 +172,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/back_btn"
+        android:id="@+id/back1_btn"
         android:layout_width="33dp"
         android:layout_height="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -181,7 +181,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
