@@ -54,4 +54,6 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.github.dangiashish:Google-Direction-Api:1.6")
 
+    implementation ("com.airbnb.android:lottie:4.2.2")
+
 }
