@@ -4,64 +4,83 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.google.android.material.card.MaterialCardView
+        android:layout_width="340dp"
+        android:layout_height="300dp"
         app:strokeWidth="1dp"
-        app:strokeColor="@color/black"
-        android:backgroundTint="#EDE1D8"
-        android:id="@+id/card"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="350dp"
-        android:layout_height="245dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/newsimg"
-            android:src="@drawable/newssample"/>
-
+        app:strokeColor="#A3A2A2"
+        android:layout_centerInParent="true">
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="340dp"
+            android:layout_height="300dp">
 
-            <com.google.android.material.card.MaterialCardView
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/black"
-                android:backgroundTint="#F6F8FA"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/border"
-                app:cardCornerRadius="0dp"
-                android:layout_width="380dp"
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="201dp">
+                android:text="Breaking News"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="5dp"
+                android:textSize="23dp"/>
 
-                <ImageView
-                    android:id="@+id/like"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/like"/>
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="160dp"
-                    android:id="@+id/share"
-                    android:src="@drawable/share"/>
+            <ImageView
+                android:id="@+id/newsimg"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/title"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/news1" />
 
-                <ImageView
-                    android:id="@+id/comment"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="300dp"
-                    android:src="@drawable/baseline_comment_24"/>
 
-            </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/like"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/like2"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="13dp"
+                android:layout_below="@+id/newsimg"/>
+
+            <ImageView
+                android:id="@+id/share"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/share"
+                android:layout_below="@+id/newsimg"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="62dp"
+                android:layout_alignParentRight="true"/>
+
+            <ImageView
+                android:id="@+id/comment"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_comment_24"
+                android:layout_below="@+id/newsimg"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="120dp"
+                android:layout_alignParentRight="true"/>
+            <ImageView
+                android:id="@+id/clock"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/clocl"
+                android:layout_below="@+id/newsimg"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/news_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsimg"
+                android:textSize="15dp"
+                android:textColor="#2353F3"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="14dp"
+                android:text="20-08-2023"/>
         </RelativeLayout>
-
-
 
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

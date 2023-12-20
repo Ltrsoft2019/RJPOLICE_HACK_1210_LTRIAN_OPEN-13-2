@@ -16,14 +16,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ltrsoft.policeapp.R;
 public class CaseDetailFragment extends Fragment {
     public CaseDetailFragment() {}
-    public TextView complain_name,crime_type,crime_status;
+    public TextView adress,incident_date,victim,compalin_desc,crime_type,complain_name;
     public Button get_loaction,add_info_btn;
+    public ImageButton casePdf;
+    public ImageView back;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,15 +37,35 @@ public class CaseDetailFragment extends Fragment {
 
         get_loaction=view.findViewById(R.id.location);
         add_info_btn = view.findViewById(R.id.investigation_form);
+        casePdf = view.findViewById(R.id.case_pdf);
+        back = view.findViewById(R.id.case_back);
 
-        complain_name=view.findViewById(R.id.complain_name);
-        crime_type=view.findViewById(R.id.crime_type);
-        crime_status=view.findViewById(R.id.crime_status);
+        complain_name = view.findViewById(R.id.complain_name);
+        crime_type = view.findViewById(R.id.crime_type);
+        compalin_desc = view . findViewById(R.id.compalin_desc);
+        victim=view.findViewById(R.id.victim);
+        adress=view.findViewById(R.id.adress);
+        incident_date=view.findViewById(R.id.incident_date);
+
 
         Bundle b = getArguments();
-        complain_name.setText(b.getString("complain_name"));
-        crime_type.setText(b.getString("crime_type"));
-        crime_status.setText(b.getString("crime_status"));
+        complain_name.setText("Ganesh Sagave");
+        crime_type.setText("Murder");
+        compalin_desc.setText("XYZ killed by abc");
+        victim.setText("Ganesh");
+        adress.setText("Latur");
+        incident_date.setText("12-02-1444");
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new CaseFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         get_loaction.setOnClickListener(new View.OnClickListener() {
             @Override

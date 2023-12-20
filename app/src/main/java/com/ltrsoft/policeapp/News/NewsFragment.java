@@ -26,11 +26,17 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.news_fragment, container, false);
         recyclerView = view.findViewById(R.id.recycler_news);
-        list.add(new News(R.drawable.newspaper));
-        list.add(new News(R.drawable.newspaper));
-        list.add(new News(R.drawable.newspaper));
-        list.add(new News(R.drawable.newspaper));
-        list.add(new News(R.drawable.newspaper));
+        list.add(new News(R.drawable.news1,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.newspaper,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.newssample,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.news1,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.newspaper,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.news1,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.newspaper,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.newssample,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.news1,"Braeking News","12-03-2024"));
+        list.add(new News(R.drawable.newspaper,"Braeking News","12-03-2024"));
+
         NewsAdapter adapter = new NewsAdapter(list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

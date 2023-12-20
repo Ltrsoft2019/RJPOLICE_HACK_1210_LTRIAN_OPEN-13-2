@@ -29,11 +29,12 @@ public class InvestigationFragment extends Fragment {
         View view = inflater.inflate(R.layout.investigation_fragment, container, false);
         recyclerView = view.findViewById(R.id.investigation_recycler);
        // Toast.makeText(getContext(), "Investigation fragment clicked", Toast.LENGTH_SHORT).show();
-        list.add(new InvestigationClass("001","crime_name","latur","12-02-2003"));
-        list.add(new InvestigationClass("001","crime_name","latur","12-02-2003"));
-        list.add(new InvestigationClass("001","crime_name","latur","12-02-2003"));
-        list.add(new InvestigationClass("001","crime_name","latur","12-02-2003"));
-        list.add(new InvestigationClass("001","crime_name","latur","12-02-2003"));
+       list.add(new InvestigationClass("omkar kshirsagar","ganesh sagave","kaif ","murder","Harun"));
+       list.add(new InvestigationClass("omkar kshirsagar","ganesh sagave","kaif ","murder","Harun"));
+       list.add(new InvestigationClass("omkar kshirsagar","ganesh sagave","kaif ","murder","Harun"));
+       list.add(new InvestigationClass("omkar kshirsagar","ganesh sagave","kaif ","murder","Harun"));
+       list.add(new InvestigationClass("omkar kshirsagar","ganesh sagave","kaif ","murder","Harun"));
+       list.add(new InvestigationClass("omkar kshirsagar","ganesh sagave","kaif ","murder","Harun"));
         InvestigationAdapter adapter = new InvestigationAdapter(list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

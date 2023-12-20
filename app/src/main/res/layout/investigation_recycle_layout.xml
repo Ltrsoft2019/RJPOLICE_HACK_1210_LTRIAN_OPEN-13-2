@@ -1,40 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_marginTop="15dp"
+<LinearLayout android:layout_marginTop="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/invst_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:textSize="20dp"
-        android:text="Investigation_name"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/invst_id"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:textSize="20dp"
-        android:text="Investigation_id"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/invst_location"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:text="Investigation_loc"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/invst_time"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:text="Investigation_time"
-        android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/investigation_card"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="35dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="32dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compainer Name :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/icomplain_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="20dp"
+            android:foregroundTint="#DF6060"
+            android:text="Rajesh mutuswami chnnaswa "
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crime Type :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"/>
+
+        <TextView
+            android:id="@+id/icrime_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="80dp"
+            android:text="Murder"
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="suspect :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"/>
+
+        <TextView
+            android:id="@+id/isuspect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+           android:layout_marginTop="120dp"
+            android:text="suspect1"
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Victim :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="160dp"/>
+
+        <TextView
+            android:id="@+id/ivictim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginBottom="33dp"
+            android:text="v1"
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Witness :"
+            android:textSize="18dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="200dp"/>
+        <TextView
+            android:id="@+id/iwitness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginBottom="33dp"
+            android:layout_marginTop="200dp"
+            android:text="Pending"
+            android:textColor="#0D47A1"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
