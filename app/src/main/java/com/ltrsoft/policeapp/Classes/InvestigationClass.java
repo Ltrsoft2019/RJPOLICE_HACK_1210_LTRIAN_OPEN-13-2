@@ -3,44 +3,53 @@ package com.ltrsoft.policeapp.Classes;
 import java.io.Serializable;
 
 public class InvestigationClass implements Serializable {
-    String inv_id,inv_name,inv_location,inv_time;
+    private String iwitness,ivictim,isuspect,icrime_type,icomplain_name;
 
-    public InvestigationClass(String inv_id, String inv_name, String inv_location, String inv_time) {
-        this.inv_id = inv_id;
-        this.inv_name = inv_name;
-        this.inv_location = inv_location;
-        this.inv_time = inv_time;
+    public InvestigationClass(String iwitness, String ivictim, String isuspect, String icrime_type, String icomplain_name) {
+        this.iwitness = iwitness;
+        this.ivictim = ivictim;
+        this.isuspect = isuspect;
+        this.icrime_type = icrime_type;
+        this.icomplain_name = icomplain_name;
     }
 
-    public String getInv_id() {
-        return inv_id;
+    public String getIwitness() {
+        return iwitness;
     }
 
-    public void setInv_id(String inv_id) {
-        this.inv_id = inv_id;
+    public void setIwitness(String iwitness) {
+        this.iwitness = iwitness;
     }
 
-    public String getInv_name() {
-        return inv_name;
+    public String getIvictim() {
+        return ivictim;
     }
 
-    public void setInv_name(String inv_name) {
-        this.inv_name = inv_name;
+    public void setIvictim(String ivictim) {
+        this.ivictim = ivictim;
     }
 
-    public String getInv_location() {
-        return inv_location;
+    public String getIsuspect() {
+        return isuspect;
     }
 
-    public void setInv_location(String inv_location) {
-        this.inv_location = inv_location;
+    public void setIsuspect(String isuspect) {
+        this.isuspect = isuspect;
     }
 
-    public String getInv_time() {
-        return inv_time;
+    public String getIcrime_type() {
+        return icrime_type;
     }
 
-    public void setInv_time(String inv_time) {
-        this.inv_time = inv_time;
+    public void setIcrime_type(String icrime_type) {
+        this.icrime_type = icrime_type;
+    }
+
+    public String getIcomplain_name() {
+        return icomplain_name;
+    }
+
+    public void setIcomplain_name(String icomplain_name) {
+        this.icomplain_name = icomplain_name;
     }
 }

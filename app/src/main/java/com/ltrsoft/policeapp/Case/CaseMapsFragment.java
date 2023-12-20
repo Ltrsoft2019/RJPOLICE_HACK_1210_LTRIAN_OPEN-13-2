@@ -39,8 +39,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.RoundCap;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.policeapp.R;
 
 import java.util.ArrayList;
@@ -54,11 +56,12 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,Rou
     public Double userLong=120.787;
     public LatLng destinationlocation, userLocation;
     private ArrayList<Polyline> polylines = null;
+    FloatingActionButton actionButton;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.case_maps_fragment, container, false);
-
+         actionButton = view.findViewById(R.id.floating);
         Bundle b = getArguments();
         double lat=b.getDouble("lattitude");
         double lon = b.getDouble("longitude");
@@ -149,23 +152,33 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,Rou
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                usrLat = location.getLatitude();
-                userLong = location.getLongitude();
-                userLocation=new LatLng(usrLat,userLong);
-                LatLng latLng = new LatLng(usrLat,userLong);
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .zoom(16f)
-                        .target(latLng)
-                        .build();
-           //       Toast.makeText(getContext(), "location ="+userLocation.longitude+","+userLong, Toast.LENGTH_SHORT).show();
-                gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Latur");
-                gmap.addMarker(markerOptions);
-                getRoute(userLocation,destinationlocation);
+                if (location!=null) {
+                    usrLat = location.getLatitude();
+                    userLong = location.getLongitude();
+                    userLocation = new LatLng(usrLat, userLong);
+                    LatLng latLng = new LatLng(usrLat, userLong);
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .zoom(16f)
+                            .target(latLng)
+                            .build();
+                    //       Toast.makeText(getContext(), "location ="+userLocation.longitude+","+userLong, Toast.LENGTH_SHORT).show();
+                    gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Latur");
+                    gmap.addMarker(markerOptions);
+                    getRoute(userLocation, destinationlocation);
+                }
+                else {
+                    Toast.makeText(activity, "location is null", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity, "failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     @Override
     public void onRouteFailure(ErrorHandling e) {
         Log.e("error","err="+e.getMessage());

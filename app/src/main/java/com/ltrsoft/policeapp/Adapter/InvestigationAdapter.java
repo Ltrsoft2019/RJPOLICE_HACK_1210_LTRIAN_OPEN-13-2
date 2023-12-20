@@ -1,14 +1,19 @@
 package com.ltrsoft.policeapp.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ltrsoft.policeapp.Case.CaseDetailFragment;
 import com.ltrsoft.policeapp.Classes.InvestigationClass;
+import com.ltrsoft.policeapp.Investigation.InvestigationDetailFragment;
 import com.ltrsoft.policeapp.R;
 
 import java.util.ArrayList;
@@ -30,24 +35,49 @@ public class InvestigationAdapter extends RecyclerView.Adapter<InvestigationAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             InvestigationClass invstclass = list.get(position);
-            holder.invst_id.setText(invstclass.getInv_id());
-            holder.invst_name.setText(invstclass.getInv_name());
-            holder.invst_location.setText(invstclass.getInv_location());
-            holder.invst_time.setText(invstclass.getInv_time());
+
+           holder.icomplain_name.setText(invstclass.getIcomplain_name());
+            holder.icrime_type.setText(invstclass.getIcrime_type());
+            holder.isuspect.setText(invstclass.getIsuspect());
+           holder.ivictim.setText(invstclass.getIvictim());
+            holder.iwitness.setText(invstclass.getIwitness());
+
+        holder.investigation_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity=(AppCompatActivity)view.getContext();
+                InvestigationDetailFragment investigationDetailFragment = new InvestigationDetailFragment();
+                Bundle b = new Bundle();
+                b.putString("complain_name", invstclass.getIcomplain_name());
+                b.putString("crime_type", invstclass.getIcrime_type());
+                b.putString("suspect", invstclass.getIsuspect());
+                b.putString("witness", invstclass.getIwitness());
+                b.putString("victim", invstclass.getIvictim());
+
+                investigationDetailFragment.setArguments(b);
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, investigationDetailFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {return list.size();    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView invst_name,invst_id,invst_location,invst_time;
+        public TextView iwitness,ivictim,isuspect,icrime_type,icomplain_name;
+        private CardView investigation_card;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            invst_id = itemView.findViewById(R.id.invst_id);
-            invst_name = itemView.findViewById(R.id.invst_name);
-            invst_location = itemView.findViewById(R.id.invst_location);
-            invst_time = itemView.findViewById(R.id.invst_time);
+            iwitness = itemView.findViewById(R.id.iwitness);
+            ivictim = itemView.findViewById(R.id.ivictim);
+            isuspect = itemView.findViewById(R.id.isuspect);
+            icrime_type = itemView.findViewById(R.id.icrime_type);
+            icomplain_name = itemView.findViewById(R.id.icomplain_name);
+            investigation_card = itemView.findViewById(R.id.investigation_card);
         }
     }
 }

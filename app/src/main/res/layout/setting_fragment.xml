@@ -11,7 +11,7 @@
         android:layout_height="50dp">
         <TextView
             android:paddingLeft="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="0dp"
             android:padding="5dp"
             android:text="Notification"
             android:textSize="18dp"

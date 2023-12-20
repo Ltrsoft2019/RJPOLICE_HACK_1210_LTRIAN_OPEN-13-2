@@ -13,8 +13,7 @@ import android.widget.TextView;
 import com.ltrsoft.policeapp.R;
 public class InvestigationFormFragment extends Fragment {
     public InvestigationFormFragment() {}
-    public TextView case_detail;
-    public Button incident_photo,victim,witness,suspect;
+    public Button incident_photo,victim,witness,suspect,evidence;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -23,6 +22,7 @@ public class InvestigationFormFragment extends Fragment {
         victim = view.findViewById(R.id.Victim);
         witness = view.findViewById(R.id.witness);
         suspect = view.findViewById(R.id.suspect);
+        evidence = view.findViewById(R.id.evidence);
 
         suspect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +57,16 @@ public class InvestigationFormFragment extends Fragment {
             }
         });
 
+        evidence.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EvidenceForm evidenceForm = new EvidenceForm();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, evidenceForm)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         
         return view;
     }

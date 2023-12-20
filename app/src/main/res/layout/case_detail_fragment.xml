@@ -5,51 +5,197 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Case.CaseDetailFragment">
-    <TextView
-        android:layout_marginTop="20dp"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="case_detail" />
+    <ImageView
+        android:id="@+id/case_back"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/back"/>
 
-    <TextView
-        android:id="@+id/complain_name"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/crime_type"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/crime_status"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-<LinearLayout
-    android:layout_marginTop="30dp"
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Complain Name:"
+            android:textSize="19dp" />
+        <TextView
+            android:id="@+id/complain_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sushant singh"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Crime Type:"
+            android:textSize="19dp" />
+
+        <TextView
+            android:id="@+id/crime_type"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Murder"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Complain Description:"
+            android:textSize="19dp" />
+
+        <TextView
+            android:id="@+id/compalin_desc"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="aj ki din ek ghatna uajdfjd dfjn"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Complain Against:"
+            android:textSize="19dp" />
+
+        <TextView
+            android:id="@+id/victim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Kaif Shaikh"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Incident Date:"
+            android:textSize="19dp" />
+
+        <TextView
+            android:id="@+id/incident_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="01/03/2023"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Address:"
+            android:textSize="19dp" />
+
+        <TextView
+            android:id="@+id/adress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ambajogai Road, Latur"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+
+
     <Button
         android:id="@+id/location"
-        android:text="Get Location"
-        android:textSize="20dp"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Track Location"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"/>
+
     <Button
         android:id="@+id/investigation_form"
-        android:text="Add Info"
-        android:textSize="20dp"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="ADD INFO"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/case_pdf"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/download"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:text="Download PDF"
+            android:textColor="#F57F17"
+            android:textColorHint="#FF6F00"
+            android:textSize="18dp" />
+
+    </LinearLayout>
 </LinearLayout>
