@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.ltrsoft.policeapp.R;
 
@@ -22,6 +23,7 @@ public class Registration_three extends Fragment {
     private Button submit_reg;
     private ImageView back3_btn;
     private Spinner spinner2,spinner3,spinner4,spinner5,spinner6;
+    private TextView Login_txt;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_registration_three, container, false);
@@ -32,6 +34,7 @@ public class Registration_three extends Fragment {
         spinner3=v.findViewById(R.id.spinner2);
         spinner4=v.findViewById(R.id.spinner3);
         spinner5=v.findViewById(R.id.spinner4);
+        Login_txt=v.findViewById(R.id.Login_txt);
         back3_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +52,15 @@ public class Registration_three extends Fragment {
             }
         });
 
+        Login_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null) .replace(R.id.main_container,new LoginFragment())
+                        .commit();
 
+            }
+        });
 
 
         String[] value2={"Select","1","2","3"};
@@ -89,6 +100,9 @@ public class Registration_three extends Fragment {
         ArrayList<String> arrayList6=new ArrayList<>(Arrays.asList(value6));
         ArrayAdapter<String> arrayAdapter6=new ArrayAdapter<>(getActivity(),R.layout.stylespinner,arrayList6);
         spinner6.setAdapter(arrayAdapter6);
+
+
+
 
         return v;
     }

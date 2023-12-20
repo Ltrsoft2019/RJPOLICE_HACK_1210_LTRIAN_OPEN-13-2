@@ -24,6 +24,7 @@ public class InvestigationFormFragment extends Fragment {
         witness = view.findViewById(R.id.witness);
         suspect = view.findViewById(R.id.suspect);
 
+
         suspect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +58,16 @@ public class InvestigationFormFragment extends Fragment {
             }
         });
 
-        
+        incident_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Investigationphoto investigationphoto =new Investigationphoto();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, investigationphoto)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         return view;
     }
 }
