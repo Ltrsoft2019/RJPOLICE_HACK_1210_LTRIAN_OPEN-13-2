@@ -26,7 +26,7 @@
         android:id="@+id/textView"
         android:layout_width="147dp"
         android:layout_height="35dp"
-        android:text="Batch Id:"
+        android:text="Email Id"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,12 +49,12 @@
         app:layout_constraintVertical_bias="0.51" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/email"
         android:layout_width="178dp"
         android:layout_height="43dp"
         android:background="@drawable/textbg"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="textEmailAddress"
         android:paddingLeft="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.412" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/password"
         android:layout_width="178dp"
         android:layout_height="43dp"
         android:background="@drawable/textbg"
@@ -77,6 +77,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.504" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="95dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.623" />
 
     <Button
         android:id="@+id/login_btn"

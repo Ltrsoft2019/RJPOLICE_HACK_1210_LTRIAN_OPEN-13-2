@@ -89,6 +89,7 @@
 
 
     <EditText
+        android:id="@+id/dob"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:background="@drawable/d2"
@@ -105,7 +106,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/textView6"
+        android:id="@+id/mobile"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="55dp"
@@ -121,7 +122,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/textView"
+        android:id="@+id/altmob"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="55dp"
@@ -150,7 +151,7 @@
         app:layout_constraintVertical_bias="0.95" />
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
+        android:id="@+id/radioGroup"
         android:layout_width="179dp"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -164,13 +165,13 @@
         app:layout_constraintVertical_bias="0.15">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/femail_btn"
             android:layout_width="88dp"
             android:layout_height="match_parent"
             android:text="female" />
 
         <RadioButton
-            android:id="@+id/radioButton1"
+            android:id="@+id/male_btn"
             android:layout_width="141dp"
             android:layout_height="match_parent"
             android:text="male"
