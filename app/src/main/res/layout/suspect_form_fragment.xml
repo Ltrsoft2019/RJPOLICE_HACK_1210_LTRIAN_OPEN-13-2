@@ -122,7 +122,8 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="80dp"
                 android:inputType="date"
-                android:hint="dd/mm/yyyy"
+                android:hint="YYYY/MM/DD
+"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/et_corner" />
 
@@ -140,11 +141,12 @@
                 android:text="Gender:"
                 android:textSize="19dp" />
 <RadioGroup
-    android:id="@+id/sgender"
+    android:id="@+id/radioGroup"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
             <RadioButton
+                android:id="@+id/male_btn"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:text="Male"
@@ -153,6 +155,7 @@
                 />
 
             <RadioButton
+                android:id="@+id/femail_btn"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -252,6 +255,12 @@
 
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp" />
+
         <Button
             android:id="@+id/suspect_submit"
             android:layout_width="150dp"
@@ -259,11 +268,6 @@
             android:text="Submit"
             android:layout_marginTop="40dp"
             android:layout_gravity="center"/>
-
-
-
-
-
 
 
     </LinearLayout>
