@@ -3,36 +3,53 @@ package com.ltrsoft.policeapp.Classes;
 import java.io.Serializable;
 
 public class News implements Serializable {
-    public int newsImgRes;
-    public String newstitle,newsdate;
+    public String news_title,news_description,news_date,news_category_name,news_photo_path;
 
-    public News(int newsImgRes, String newstitle, String newsdate) {
-        this.newsImgRes = newsImgRes;
-        this.newstitle = newstitle;
-        this.newsdate = newsdate;
+    public News(String news_title, String news_description, String news_date, String news_category_name, String news_photo_path) {
+        this.news_title = news_title;
+        this.news_description = news_description;
+        this.news_date = news_date;
+        this.news_category_name = news_category_name;
+        this.news_photo_path = news_photo_path;
     }
 
-    public int getNewsImgRes() {
-        return newsImgRes;
+    public String getNews_title() {
+        return news_title;
     }
 
-    public void setNewsImgRes(int newsImgRes) {
-        this.newsImgRes = newsImgRes;
+    public void setNews_title(String news_title) {
+        this.news_title = news_title;
     }
 
-    public String getNewstitle() {
-        return newstitle;
+    public String getNews_description() {
+        return news_description;
     }
 
-    public void setNewstitle(String newstitle) {
-        this.newstitle = newstitle;
+    public void setNews_description(String news_description) {
+        this.news_description = news_description;
     }
 
-    public String getNewsdate() {
-        return newsdate;
+    public String getNews_date() {
+        return news_date;
     }
 
-    public void setNewsdate(String newsdate) {
-        this.newsdate = newsdate;
+    public void setNews_date(String news_date) {
+        this.news_date = news_date;
+    }
+
+    public String getNews_category_name() {
+        return news_category_name;
+    }
+
+    public void setNews_category_name(String news_category_name) {
+        this.news_category_name = news_category_name;
+    }
+
+    public String getNews_photo_path() {
+        return news_photo_path;
+    }
+
+    public void setNews_photo_path(String news_photo_path) {
+        this.news_photo_path = news_photo_path;
     }
 }

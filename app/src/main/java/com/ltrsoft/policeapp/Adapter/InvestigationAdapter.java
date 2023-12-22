@@ -35,48 +35,27 @@ public class InvestigationAdapter extends RecyclerView.Adapter<InvestigationAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             InvestigationClass invstclass = list.get(position);
-
-           holder.icomplain_name.setText(invstclass.getIcomplain_name());
-            holder.icrime_type.setText(invstclass.getIcrime_type());
-            holder.isuspect.setText(invstclass.getIsuspect());
-           holder.ivictim.setText(invstclass.getIvictim());
-            holder.iwitness.setText(invstclass.getIwitness());
-
-        holder.investigation_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity=(AppCompatActivity)view.getContext();
-                InvestigationDetailFragment investigationDetailFragment = new InvestigationDetailFragment();
-                Bundle b = new Bundle();
-                b.putString("complain_name", invstclass.getIcomplain_name());
-                b.putString("crime_type", invstclass.getIcrime_type());
-                b.putString("suspect", invstclass.getIsuspect());
-                b.putString("witness", invstclass.getIwitness());
-                b.putString("victim", invstclass.getIvictim());
-
-                investigationDetailFragment.setArguments(b);
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, investigationDetailFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
+            holder.firno.setText(invstclass.getFir_id());
+            holder.icrime_type.setText(invstclass.getComplaint_type_name());
+            holder.icomplain_name.setText(invstclass.getComplaint_subject());
+            holder.status.setText(invstclass.getStatus_name());
+            holder.category.setText(invstclass.getComplaintORfir_name());
     }
 
     @Override
     public int getItemCount() {return list.size();    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView iwitness,ivictim,isuspect,icrime_type,icomplain_name;
+        public TextView category,firno,status,icrime_type,icomplain_name;
         private CardView investigation_card;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            iwitness = itemView.findViewById(R.id.iwitness);
-            ivictim = itemView.findViewById(R.id.ivictim);
-            isuspect = itemView.findViewById(R.id.isuspect);
-            icrime_type = itemView.findViewById(R.id.icrime_type);
-            icomplain_name = itemView.findViewById(R.id.icomplain_name);
+            category = itemView.findViewById(R.id.iwitness);
+            status = itemView.findViewById(R.id.ivictim);
+            icrime_type = itemView.findViewById(R.id.isuspect);
+            icomplain_name = itemView.findViewById(R.id.icrime_type);
+            firno = itemView.findViewById(R.id.icomplain_name);
             investigation_card = itemView.findViewById(R.id.investigation_card);
         }
     }

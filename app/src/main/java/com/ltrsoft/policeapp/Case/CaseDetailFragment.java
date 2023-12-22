@@ -28,6 +28,7 @@ public class CaseDetailFragment extends Fragment {
     public Button get_loaction,add_info_btn;
     public ImageButton casePdf;
     public ImageView back;
+    public Double latitude,longitude;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,14 +50,16 @@ public class CaseDetailFragment extends Fragment {
 
 
         Bundle b = getArguments();
-        complain_name.setText("Ganesh Sagave");
-        crime_type.setText("Murder");
-        compalin_desc.setText("XYZ killed by abc");
-        victim.setText("Ganesh");
-        adress.setText("Latur");
-        incident_date.setText("12-02-1444");
-
-
+        if (b!=null) {
+            complain_name.setText(b.getString("complain_name"));
+            crime_type.setText(b.getString("crime_type"));
+            compalin_desc.setText(b.getString("complaint_description"));
+            victim.setText(b.getString("complaint_against"));
+            adress.setText(b.getString("user_address"));
+            incident_date.setText(b.getString("incident_date"));
+            latitude = Double.parseDouble(b.getString("latitude"));
+            longitude = Double.parseDouble(b.getString("longitude"));
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +76,8 @@ public class CaseDetailFragment extends Fragment {
                 CaseMapsFragment mapsFragment =new CaseMapsFragment();
                // AppCompatActivity activity=(AppCompatActivity)view.getContext();
                 Bundle bundle = new Bundle();
-                bundle.putDouble("lattitude",18.2505);
-                bundle.putDouble("longitude",76.4997);
+                bundle.putDouble("lattitude",latitude);
+                bundle.putDouble("longitude",longitude);
                 mapsFragment.setArguments(bundle);
 
                 LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);

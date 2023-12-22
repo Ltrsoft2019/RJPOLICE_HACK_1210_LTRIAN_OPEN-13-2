@@ -18,6 +18,7 @@ import com.ltrsoft.policeapp.Case.CaseDetailFragment;
 import com.ltrsoft.policeapp.Classes.News;
 import com.ltrsoft.policeapp.News.NewsViewFragment;
 import com.ltrsoft.policeapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,16 +41,20 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         News news = list.get(position);
-        holder.newsImg.setImageResource(news.getNewsImgRes());
-        holder.title.setText("Breaking News");
-        holder.newsDate.setText("12-02-2024");
+       // String imgurl ="https://institute.ltr-soft.com/company_details/"+news.getNews_photo_path();
+        //Picasso.get().load(imgurl).into(holder.newsImg);
+        holder.newsImg.setImageResource(R.drawable.news1);
+        holder.title.setText(news.getNews_description());
+        holder.newsDate.setText(news.getNews_date());
         holder.newsImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity=(AppCompatActivity)view.getContext();
                 NewsViewFragment viewFragment = new NewsViewFragment();
                 Bundle b = new Bundle();
-                b.putInt("news_img", news.getNewsImgRes());
+                b.putString("news_img", news.getNews_photo_path());
+                b.putString("news_description", news.getNews_category_name());
+                b.putString("news_title", news.getNews_title());
                 viewFragment.setArguments(b);
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, viewFragment)
@@ -57,8 +62,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                         .commit();
             }
         });
-
-
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,15 +85,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 intent.setAction(intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT,"Hello");
                 intent.setType("text/plain");
-
-
                 if (intent.resolveActivity(context.getPackageManager())!=null){
                 }
                 context.startActivity(intent);
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return list.size();
