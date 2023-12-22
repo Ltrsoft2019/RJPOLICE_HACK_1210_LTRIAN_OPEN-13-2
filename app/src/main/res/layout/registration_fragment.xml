@@ -100,8 +100,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.913" />
 
-    <TextView
-        android:id="@+id/fname"
+    <EditText
+        android:id="@+id/create_fname"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:background="@drawable/d1"
@@ -113,8 +113,8 @@
         app:layout_constraintVertical_bias="0.426"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/mname"
+    <EditText
+        android:id="@+id/create_mname"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"
@@ -127,8 +127,8 @@
         app:layout_constraintVertical_bias="0.501"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/lname"
+    <EditText
+        android:id="@+id/create_lname"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"
@@ -141,8 +141,8 @@
         app:layout_constraintVertical_bias="0.59"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/email"
+    <EditText
+        android:id="@+id/create_email"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"
@@ -156,8 +156,8 @@
         app:layout_constraintVertical_bias="0.679"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/password"
+    <EditText
+        android:id="@+id/create_password"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="25dp"

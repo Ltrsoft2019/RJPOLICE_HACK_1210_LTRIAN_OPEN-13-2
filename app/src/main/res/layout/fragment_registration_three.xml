@@ -124,8 +124,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.633" />
 
-    <Spinner
-        android:id="@+id/spinner"
+    <EditText
+        android:id="@+id/station_id"
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
@@ -150,8 +150,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.709" />
 
-    <Spinner
-        android:id="@+id/spinner3"
+    <EditText
+        android:id="@+id/position_id"
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
@@ -176,8 +176,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.546" />
 
-    <Spinner
-        android:id="@+id/spinner5"
+    <EditText
+        android:id="@+id/batch_id"
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
@@ -188,6 +188,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.468" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="95dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827" />
 
     <Button
         android:id="@+id/submit_reg"
