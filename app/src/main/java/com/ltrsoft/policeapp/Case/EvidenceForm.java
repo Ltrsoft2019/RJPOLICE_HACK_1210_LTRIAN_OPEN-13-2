@@ -149,6 +149,8 @@ public class EvidenceForm extends Fragment {
         // Create and display the AlertDialog
         AlertDialog dialog = builder.create();
         dialog.show();
+
+
     }
 
 }
