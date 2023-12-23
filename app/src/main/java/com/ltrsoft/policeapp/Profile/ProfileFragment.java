@@ -47,7 +47,6 @@ public class ProfileFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +57,6 @@ public class ProfileFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
