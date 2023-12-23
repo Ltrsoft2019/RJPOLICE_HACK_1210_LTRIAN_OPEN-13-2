@@ -1,14 +1,409 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Case.VictimFormFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_width="410dp"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Victim form " />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/v_back"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/back"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:text="FIR Name"
+                android:textSize="19dp" />
+            <EditText
+                android:id="@+id/vv_firname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="@drawable/d1"
+                android:paddingLeft="15dp"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="30dp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="First Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/vv_fname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="50dp"
+                android:paddingLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/d1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Middle Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/vv_mname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="15dp"
+                android:background="@drawable/d1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Last Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_lname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="15dp"
+                android:background="@drawable/d1" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="DOB:"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/vf_dob"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="100dp"
+                android:inputType="datetime"
+                android:hint="YYYY/MM/DD"
+                android:paddingLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/d1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Gender:"
+                android:textSize="19dp" />
+            <RadioGroup
+                android:id="@+id/v_radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/v_male_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:text="Male"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="30dp"
+                    />
+
+                <RadioButton
+                    android:id="@+id/v_female_btn"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Female"
+                    />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Mobile No:"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_mobile"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/d1"
+                android:paddingLeft="15dp"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Address"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_address"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/d1"
+                android:inputType="textPostalAddress"
+                android:paddingLeft="15dp" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Email ID"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_email"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="15dp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Photo"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_photo"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="15dp"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Contry Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_contryname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="15dp"
+                android:inputType="text"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="State Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_statename"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="District Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_distname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:paddingLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:inputType="text"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="City Name"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_cityname"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="30dp"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Addhar No"
+                android:textSize="19dp" />
+
+            <EditText
+                android:id="@+id/v_addhar"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="15dp"
+                android:inputType="number"
+                android:background="@drawable/d1"
+                />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/v_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="170dp"
+ />
+
+        <Button
+            android:id="@+id/v_submit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</ScrollView>
