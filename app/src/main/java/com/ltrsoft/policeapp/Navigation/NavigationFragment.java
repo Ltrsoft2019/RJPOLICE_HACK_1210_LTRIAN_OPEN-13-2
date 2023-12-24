@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ltrsoft.policeapp.Message.Message_fragment;
 import com.ltrsoft.policeapp.Status.StatusFragment;
-import com.ltrsoft.policeapp.Message.MessageFragment;
 import com.ltrsoft.policeapp.News.NewsFragment;
 import com.ltrsoft.policeapp.Profile.ProfileFragment;
 import com.ltrsoft.policeapp.R;
@@ -35,7 +35,7 @@ public class NavigationFragment extends Fragment {
             if (itemId == R.id.status) {
                 replaceFragment(new StatusFragment());
             } else if (itemId == R.id.message) {
-                replaceFragment(new MessageFragment());
+                replaceFragment(new Message_fragment());
             } else if (itemId == R.id.user) {
                 replaceFragment(new ProfileFragment());
             } else if (itemId == R.id.news) {
