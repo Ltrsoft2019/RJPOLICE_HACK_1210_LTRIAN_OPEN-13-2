@@ -2,12 +2,15 @@ package com.ltrsoft.policeapp.Case;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.policeapp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +46,7 @@ public class WitnessFormFragment extends Fragment {
     private RadioGroup radioGroup;
 
     private String gender;
+    private String encodeImage;
 
     private Button w_submit;
     private String fir="2023-12-14-1";
@@ -112,7 +118,7 @@ public class WitnessFormFragment extends Fragment {
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "Record Saved"+response.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Witness Data Saved Successfully"+response.toString(), Toast.LENGTH_LONG).show();
                 w_progressBar.setVisibility(View.INVISIBLE);
                 w_submit.setVisibility(View.VISIBLE);
                 w_fname.setText("");
@@ -127,6 +133,7 @@ public class WitnessFormFragment extends Fragment {
                 w_country.setText("");
                 w_statename.setText("");
                 w_city.setText("");
+                user_photo.setImageResource(R.drawable.person);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -153,6 +160,7 @@ public class WitnessFormFragment extends Fragment {
                 map.put("city_id",w_city.getText().toString());
                 map.put("investigation_witness_gender",gender.toString());
                 map.put("fir_id",fir.toString());
+                map.put("investigation_witness_photo",encodeImage.toString());
                 return map;
             }
         };
@@ -174,8 +182,14 @@ public class WitnessFormFragment extends Fragment {
                 try {
                     // Get the selected image URI
                     Uri imageUri = data.getData();
-                    // Display the selected image in ImageView
+                    InputStream inputStream =getContext().getContentResolver().openInputStream(imageUri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                      user_photo.setImageURI(imageUri);
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
 
 
                 } catch (Exception e) {

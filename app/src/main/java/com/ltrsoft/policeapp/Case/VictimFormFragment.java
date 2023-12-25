@@ -2,12 +2,15 @@ package com.ltrsoft.policeapp.Case;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,8 @@ import com.ltrsoft.policeapp.LoinRegistration.LoginFragment;
 import com.ltrsoft.policeapp.Navigation.NavigationFragment;
 import com.ltrsoft.policeapp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +49,7 @@ public class VictimFormFragment extends Fragment {
     private Button v_submit;
 
     private RadioButton v_male_btn,v_female_btn;
-    private String gender;
+    private String gender,encodeImage;
     private ProgressBar v_progressbar;
 
     private String firid="2023-12-14-1";
@@ -155,6 +160,7 @@ public class VictimFormFragment extends Fragment {
                 v_cityname.setText("");
                 v_addhar.setText("");
                 v_radioGroup.clearCheck();
+                user_photo.setImageResource(R.drawable.person);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -185,6 +191,7 @@ public class VictimFormFragment extends Fragment {
                 map.put("city_id",v_cityname.getText().toString());
                 map.put("victim_adhar",v_addhar.getText().toString());
                 map.put("fir_id",firid.toString());
+                map.put("victim_photo",encodeImage.toString());
                 return map;
             }
         };
@@ -206,8 +213,17 @@ public class VictimFormFragment extends Fragment {
                     // Get the selected image URI
                     Uri imageUri = data.getData();
 
+                    InputStream inputStream =getContext().getContentResolver().openInputStream(imageUri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
                     // Display the selected image in ImageView
                     user_photo.setImageURI(imageUri);
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
