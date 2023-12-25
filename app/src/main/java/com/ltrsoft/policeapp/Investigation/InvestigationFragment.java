@@ -21,6 +21,8 @@ import com.ltrsoft.policeapp.Adapter.CaseAdapter;
 import com.ltrsoft.policeapp.Adapter.InvestigationAdapter;
 import com.ltrsoft.policeapp.Classes.CaseClass;
 import com.ltrsoft.policeapp.Classes.InvestigationClass;
+import com.ltrsoft.policeapp.LoinRegistration.RegistrationFragment;
+import com.ltrsoft.policeapp.LoinRegistration.Registration_two;
 import com.ltrsoft.policeapp.R;
 
 import org.json.JSONArray;
@@ -33,12 +35,18 @@ public class InvestigationFragment extends Fragment {
     public InvestigationFragment() {}
     private RecyclerView recyclerView ;
     ArrayList<InvestigationClass> list=new ArrayList<>();
+    private  androidx.cardview.widget.CardView cardView;
     public final static String INVESTIGATION_URL ="https://rj.ltr-soft.com//police_api/investigation/investigation_detail.php";
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.investigation_fragment, container, false);
         recyclerView = view.findViewById(R.id.investigation_recycler);
+        cardView=view.findViewById(R.id.investigation_card);
+
+
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, INVESTIGATION_URL, null, new Response.Listener<JSONArray>() {
             @Override
@@ -47,13 +55,13 @@ public class InvestigationFragment extends Fragment {
                 for (int i=0 ; i<response.length();i++) {
                     try {
                       JSONObject jsonObject = response.getJSONObject(i);
-                      //fir_id,complaint_subject,complaint_type_name,complaintORfir_name,status_name
-                        //    ,suspect_fname,suspect_mname,suspect_lname,suspect_address,suspect_gender,suspect_mobile_no,suspect_photo,
-                        //            investigation_witness_fname,investigation_witness_mname,investigation_witness_lname,
-                        //            investigation_witness_address,investigation_witness_dob,investigation_witness_gender,
-                        //            investigation_witness_mobile,investigation_witness_photo,victim_fname,victim_mname,victim_lname,
-                        //             victim_address,victim_gender,victim_mobile_no,victim_photo
                         String fir_id = jsonObject.getString("fir_id");
+
+                        InvestigationDetailFragment investigationDetailFragment=new InvestigationDetailFragment();
+                        Bundle b = new Bundle();
+                        b.putString("fir", fir_id.toString());
+                        investigationDetailFragment.setArguments(b);
+
                         String complaint_subject = jsonObject.getString("complaint_subject");
                         String complaint_type_name = jsonObject.getString("complaint_type_name");
                         String status_name = jsonObject.getString("status_name");

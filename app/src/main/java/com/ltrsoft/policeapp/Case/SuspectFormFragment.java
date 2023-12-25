@@ -1,10 +1,16 @@
 package com.ltrsoft.policeapp.Case;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,18 +32,23 @@ import com.android.volley.toolbox.Volley;
 import com.ltrsoft.policeapp.LoinRegistration.LoginFragment;
 import com.ltrsoft.policeapp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SuspectFormFragment extends Fragment {
     SuspectFormFragment() {}
-    private TextView fname,mname,lanme,adress,mobile,dob,email,adhar,photo;
+    private static final int REQUEST_IMAGE_GET = 1;
+
+    private TextView fname,mname,lanme,adress,mobile,dob,email,adhar,user_gallery;
     private Button submit;
-     private ImageView back;
+     private ImageView back,user_photo;
     private RadioGroup radioGroup;
     private RadioButton male_btn,femail_btn;
     private String gender;
     private ProgressBar progressBar;
+    private String encodeImage;
 
     private String id="2023-12-14-1";
     private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
@@ -54,7 +65,9 @@ public class SuspectFormFragment extends Fragment {
         dob  = view.findViewById(R.id.sdob);
         email  = view.findViewById(R.id.semail);
         adhar  = view.findViewById(R.id.sadhar);
-        photo  = view.findViewById(R.id.sphoto);
+        user_gallery = view.findViewById(R.id.user_gallery);
+        user_photo = view.findViewById(R.id.user_photo);
+
 
         back=view.findViewById(R.id.suspect_back);
 
@@ -97,6 +110,20 @@ public class SuspectFormFragment extends Fragment {
             }
         });
 
+        user_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
+        user_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
         return view;
     }
 
@@ -118,6 +145,7 @@ public class SuspectFormFragment extends Fragment {
                 email.setText("");
                 adhar.setText("");
                 radioGroup.clearCheck();
+                user_photo.setImageResource(R.drawable.person);
 
 
             }
@@ -145,10 +173,42 @@ public class SuspectFormFragment extends Fragment {
                 map.put("suspect_email",email.getText().toString());
                 map.put("suspect_adhar",adhar.getText().toString());
                 map.put("fir_id",id.toString());
+                map.put("suspect_photo",encodeImage.toString());
                 return map;
             }
         };
         requestQueue.add(stringRequest);
     }
+
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQUEST_IMAGE_GET);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_GET && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                try {
+                    // Get the selected image URI
+                    Uri imageUri = data.getData();
+                    InputStream inputStream =getContext().getContentResolver().openInputStream(imageUri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    // Display the selected image in ImageView
+                    user_photo.setImageURI(imageUri);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
 }

@@ -46,16 +46,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.newsImg.setImageResource(R.drawable.news1);
         holder.title.setText(news.getNews_description());
         holder.newsDate.setText(news.getNews_date());
+
         holder.newsImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity=(AppCompatActivity)view.getContext();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 NewsViewFragment viewFragment = new NewsViewFragment();
                 Bundle b = new Bundle();
+
+                // Assuming `newsImg.getNews_photo_path()` returns the image path as a String
+                // Pass the image path instead of resource ID if you intend to load it using Glide or Picasso
                 b.putString("news_img", news.getNews_photo_path());
+
                 b.putString("news_description", news.getNews_category_name());
                 b.putString("news_title", news.getNews_title());
                 viewFragment.setArguments(b);
+
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, viewFragment)
                         .addToBackStack(null)

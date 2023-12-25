@@ -65,7 +65,7 @@ public class ProfileDetailFragment extends Fragment {
         police_adhar = view . findViewById(R.id.policeadhar);
 
 
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.p_update).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction()

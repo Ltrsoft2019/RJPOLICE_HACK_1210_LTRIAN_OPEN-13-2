@@ -1,10 +1,13 @@
 package com.ltrsoft.policeapp.Adapter;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ltrsoft.policeapp.Case.CaseDetailFragment;
 import com.ltrsoft.policeapp.Classes.InvestigationClass;
 import com.ltrsoft.policeapp.Investigation.InvestigationDetailFragment;
+import com.ltrsoft.policeapp.Navigation.NavigationFragment;
 import com.ltrsoft.policeapp.R;
 
 import java.util.ArrayList;
@@ -40,6 +44,20 @@ public class InvestigationAdapter extends RecyclerView.Adapter<InvestigationAdap
             holder.icomplain_name.setText(invstclass.getComplaint_subject());
             holder.status.setText(invstclass.getStatus_name());
             holder.category.setText(invstclass.getComplaintORfir_name());
+
+
+        holder.investigation_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                AppCompatActivity activity=(AppCompatActivity)v.getContext();
+//
+//                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new InvestigationDetailFragment())
+//                            .commit();
+
+
+
+            }
+        });
     }
 
     @Override
@@ -57,6 +75,9 @@ public class InvestigationAdapter extends RecyclerView.Adapter<InvestigationAdap
             icomplain_name = itemView.findViewById(R.id.icrime_type);
             firno = itemView.findViewById(R.id.icomplain_name);
             investigation_card = itemView.findViewById(R.id.investigation_card);
+
+
+
         }
     }
 }

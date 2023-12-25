@@ -1,5 +1,8 @@
 package com.ltrsoft.policeapp.Case;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -29,9 +33,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WitnessFormFragment extends Fragment {
-
+    private static final int REQUEST_IMAGE_GET = 1;
     public WitnessFormFragment() {    }
-    public ImageView back;
+    public ImageView back,user_photo;
     private EditText w_fname,w_mname,w_lname,w_address,w_dob,w_mobile,w_email,w_adhar,w_country,w_statename,w_city;
     private RadioButton male,female;
     private RadioGroup radioGroup;
@@ -42,6 +46,7 @@ public class WitnessFormFragment extends Fragment {
     private String fir="2023-12-14-1";
     private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
     private ProgressBar w_progressBar;
+    private TextView user_gallery;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +69,10 @@ public class WitnessFormFragment extends Fragment {
         w_submit=view.findViewById(R.id.w_submit);
         w_progressBar=view.findViewById(R.id.w_progressBar);
         w_progressBar.setVisibility(View.INVISIBLE);
+
+        user_gallery = view.findViewById(R.id.user_gallery);
+        user_photo = view.findViewById(R.id.user_photo);
+
         w_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +89,21 @@ public class WitnessFormFragment extends Fragment {
                     senddata();
             }
         });
+
+        user_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
+        user_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
         return view;
     }
     public void senddata(){
@@ -133,5 +157,31 @@ public class WitnessFormFragment extends Fragment {
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQUEST_IMAGE_GET);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_GET && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                try {
+                    // Get the selected image URI
+                    Uri imageUri = data.getData();
+                    // Display the selected image in ImageView
+                     user_photo.setImageURI(imageUri);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

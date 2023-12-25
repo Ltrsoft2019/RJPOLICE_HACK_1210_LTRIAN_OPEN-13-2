@@ -1,5 +1,8 @@
 package com.ltrsoft.policeapp.Case;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,6 +38,8 @@ public class VictimFormFragment extends Fragment {
 
     private EditText vv_firname,vv_fname,vv_mname,v_lname,vf_dob,v_mobile,v_address,v_email,v_contryname,v_statename,
             v_distname,v_cityname,v_addhar;
+    private static final int REQUEST_IMAGE_GET = 1;
+
 
     private Button v_submit;
 
@@ -44,10 +50,11 @@ public class VictimFormFragment extends Fragment {
     private String firid="2023-12-14-1";
 
     private RadioGroup v_radioGroup;
+    private TextView user_gallery;
 
     private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/investigation_victim/create_investigation_victim.php";
 
-    private ImageView v_back;
+    private ImageView v_back,user_photo;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +80,9 @@ public class VictimFormFragment extends Fragment {
         v_radioGroup= view.findViewById(R.id.v_radioGroup);
         v_back=view.findViewById(R.id.v_back);
 
+
+        user_gallery = view.findViewById(R.id.user_gallery);
+        user_photo = view.findViewById(R.id.user_photo);
 
         v_progressbar.setVisibility(View.INVISIBLE);
 
@@ -101,6 +111,20 @@ public class VictimFormFragment extends Fragment {
             }
         });
 
+
+        user_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
+        user_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
 
         return view;
     }
@@ -167,4 +191,27 @@ public class VictimFormFragment extends Fragment {
         requestQueue.add(stringRequest);
     }
 
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQUEST_IMAGE_GET);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_GET && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                try {
+                    // Get the selected image URI
+                    Uri imageUri = data.getData();
+
+                    // Display the selected image in ImageView
+                    user_photo.setImageURI(imageUri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

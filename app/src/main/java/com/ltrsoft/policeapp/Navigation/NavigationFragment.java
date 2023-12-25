@@ -1,4 +1,13 @@
 package com.ltrsoft.policeapp.Navigation;
+import static android.content.Context.MODE_PRIVATE;
+
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ltrsoft.policeapp.Message.Message_fragment;
@@ -22,12 +32,17 @@ public class NavigationFragment extends Fragment {
         // Required empty public constructor
     }
     private BottomNavigationView bottomNavigationView;
+
+    private static final String PREF_NAME = "MyPreferences";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.navigation_fragment, container, false);
         bottomNavigationView = view.findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.status);
+
+
         replaceFragment(new StatusFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -44,6 +59,8 @@ public class NavigationFragment extends Fragment {
             return true;
 
         });
+
+
         return view;
     }
     private void replaceFragment(Fragment fragment){
@@ -53,4 +70,8 @@ public class NavigationFragment extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+
+
+
 }
