@@ -67,7 +67,6 @@ public class CaseFragment extends Fragment {
                         list.add(new CaseClass(complaint_name,status_name,complaint_type_name,complaint_description,
                                 complaint_against,incident_date,latitude,longitude,complaint_fir_id,created_at,
                                 updated_at,user_address));
-                       // Toast.makeText(getContext(), "lattitude= "+latitude, Toast.LENGTH_SHORT).show();
                         CaseAdapter adapter = new CaseAdapter(list);
                         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                         recyclerView.setLayoutManager(layoutManager);

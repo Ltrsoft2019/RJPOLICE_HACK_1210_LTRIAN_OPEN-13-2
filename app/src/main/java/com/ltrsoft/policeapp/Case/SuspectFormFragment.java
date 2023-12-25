@@ -29,7 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.ltrsoft.policeapp.LoinRegistration.LoginFragment;
+import com.ltrsoft.policeapp.Investigation.InvestigationFormFragment;
 import com.ltrsoft.policeapp.R;
 
 import java.io.ByteArrayOutputStream;
@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SuspectFormFragment extends Fragment {
-    SuspectFormFragment() {}
+    public SuspectFormFragment() {}
     private static final int REQUEST_IMAGE_GET = 1;
 
     private TextView fname,mname,lanme,adress,mobile,dob,email,adhar,user_gallery;

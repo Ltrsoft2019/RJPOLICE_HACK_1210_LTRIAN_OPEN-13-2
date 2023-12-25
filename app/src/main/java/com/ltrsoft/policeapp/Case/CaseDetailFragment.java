@@ -11,7 +11,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.itextpdf.io.IOException;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import com.ltrsoft.policeapp.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 public class CaseDetailFragment extends Fragment {
     public CaseDetailFragment() {}
     public TextView adress,incident_date,victim,compalin_desc,crime_type,complain_name;
@@ -29,15 +41,14 @@ public class CaseDetailFragment extends Fragment {
     public ImageButton casePdf;
     public ImageView back;
     public Double latitude,longitude;
+    private TextView download;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.case_detail_fragment, container, false);
-       // Toast.makeText(getContext(), "this is course detail fragment", Toast.LENGTH_SHORT).show();
 
         get_loaction=view.findViewById(R.id.location);
-        add_info_btn = view.findViewById(R.id.investigation_form);
         casePdf = view.findViewById(R.id.case_pdf);
         back = view.findViewById(R.id.case_back);
 
@@ -47,7 +58,7 @@ public class CaseDetailFragment extends Fragment {
         victim=view.findViewById(R.id.victim);
         adress=view.findViewById(R.id.adress);
         incident_date=view.findViewById(R.id.incident_date);
-
+        download=view.findViewById(R.id.downloadpdf);
 
         Bundle b = getArguments();
         if (b!=null) {
@@ -99,17 +110,35 @@ public class CaseDetailFragment extends Fragment {
 
             }
         });
-        add_info_btn.setOnClickListener(new View.OnClickListener() {
+
+        download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InvestigationFormFragment invstFragment =new InvestigationFormFragment();
-             //  AppCompatActivity activity=(AppCompatActivity)view.getContext();
-               getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new InvestigationFormFragment())
-                        .addToBackStack(null)
-                        .commit();
+                File pdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "example.pdf");
+
+                try {
+
+                    PdfWriter writer = new PdfWriter(new FileOutputStream(pdfFile));
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document document = new Document(pdf);
+                    document.add(new Paragraph("            Case Details"));
+                    document.add(new Paragraph("Complain Name :         "+b.getString("complain_name")));
+                    document.add(new Paragraph("Crime Type    :         "+b.getString("complain_name")));
+                    document.add(new Paragraph("Complain Description :  "+b.getString("complain_name")));
+                    document.add(new Paragraph("Complain Against :      "+b.getString("complain_name")));
+                    document.add(new Paragraph("Incident Date  :        "+b.getString("complain_name")));
+                    document.add(new Paragraph("Address :                "));
+                    document.close();
+                    Log.d("PdfGenerator", "PDF created successfully at: " + pdfFile.getAbsolutePath());
+                    Toast.makeText(getContext(), "PDF created successfully at: " + pdfFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
+
         return view;
     }
     private void showEnableLocationDialog() {

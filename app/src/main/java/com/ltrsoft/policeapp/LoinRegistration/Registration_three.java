@@ -40,15 +40,18 @@ public class Registration_three extends Fragment {
     private Button submit_reg;
     private ImageView back3_btn;
     private Spinner station_id,position_id,district_id,ciry_id,spinner6;
+    private ArrayAdapter adapter;
     private TextView Login_txt;
     private String v1,v2,v3,v4,v5,v6,v7,v8,v9;
     private EditText batch_id;
     private ProgressBar progressBar;
     private  RequestQueue requestQueue;
-    ArrayList <String> list,listdistrict;
+    ArrayList <String> list,listdistrict,listcity,liststation;
     private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/data/police_insert.php";
     private static final String POSITON_URL = "https://rj.ltr-soft.com/police_api/data/position_read.php";
     private static final String DISTRICT_URL = "https://rj.ltr-soft.com/public/police_api/district/select_district.php";
+    private static final String CITY_URL = "https://rj.ltr-soft.com/public/police_api/city/select_city.php";
+    private static final String STATION_URL = "https://rj.ltr-soft.com/public/police_api/police_station/read_police_station.php";
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_registration_three, container, false);
@@ -63,8 +66,10 @@ public class Registration_three extends Fragment {
         Login_txt=v.findViewById(R.id.Login_txt);
         progressBar=v.findViewById(R.id.progressBar);
 
+        loadSattion();
+        loadCity();
         loadPosition();
-       // loadDistrict();
+       loadDistrict();
 
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -105,28 +110,125 @@ public class Registration_three extends Fragment {
         });
         return v;
     }
-    private void loadDistrict() {
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, DISTRICT_URL, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+
+    private void loadSattion() {
+        StringRequest request = new StringRequest(Request.Method.POST, STATION_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+                liststation = new ArrayList<>();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0 ; i < jsonArray.length() ; i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String sta = jsonObject.getString("police_station_name");
+                        liststation.add(sta);
                     }
-                }, new Response.ErrorListener() {
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "error json "+e.toString(), Toast.LENGTH_SHORT).show();
+                    throw new RuntimeException(e);
+                }
+                adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,liststation);
+                adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+                station_id.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "error = "+error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap <String,String>map = new HashMap<>();
-                map.put("state_id","1");
+                return super.getParams();
+            }
+        };
+        requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(request);
+    }
+
+    private void loadCity() {
+        StringRequest cityrequest = new StringRequest(Request.Method.POST, CITY_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        listcity = new ArrayList<>();
+                        Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0 ; i < jsonArray.length() ; i ++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String cit = jsonObject.getString("city_name");
+                                listcity.add(cit);
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(getContext(), "json erro"+e.toString(), Toast.LENGTH_SHORT).show();
+                            throw new RuntimeException(e);
+                        }
+                        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,listcity);
+                        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+                        ciry_id.setAdapter(adapter);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "error "+error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String,String> map = new HashMap<>();
+                map.put("district_id","1");
                 return map;
             }
         };
         requestQueue=Volley.newRequestQueue(getContext());
+        requestQueue.add(cityrequest);
+    }
+
+    private void loadDistrict() {
+        StringRequest request = new StringRequest(Request.Method.POST, DISTRICT_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                listdistrict= new ArrayList<>();
+                Log.d("response",response.toString());
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    for (int i = 0 ; i < jsonArray.length()  ; i++){
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String dis = jsonObject.getString("district_name");
+                        listdistrict.add(dis);
+                        Log.d("jsonarray",dis);
+                    }
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,listdistrict);
+                adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+                district_id.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "response = "+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String,String> map = new HashMap<>();
+                map.put("state_id","1");
+                return map;
+            }
+        };
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
         requestQueue.add(request);
     }
     private void loadPosition() {

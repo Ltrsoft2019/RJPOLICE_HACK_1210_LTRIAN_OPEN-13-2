@@ -1,4 +1,4 @@
-package com.ltrsoft.policeapp.Case;
+package com.ltrsoft.policeapp.Investigation;
 
 import android.os.Bundle;
 
@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ltrsoft.policeapp.Case.CaseDetailFragment;
+import com.ltrsoft.policeapp.Case.EvidenceForm;
+import com.ltrsoft.policeapp.Case.Investigationphoto;
+import com.ltrsoft.policeapp.Case.SuspectFormFragment;
+import com.ltrsoft.policeapp.Case.VictimFormFragment;
+import com.ltrsoft.policeapp.Case.WitnessFormFragment;
 import com.ltrsoft.policeapp.R;
 public class InvestigationFormFragment extends Fragment {
     public InvestigationFormFragment() {}
@@ -38,7 +44,6 @@ public class InvestigationFormFragment extends Fragment {
                         .commit();
             }
         });
-
         witness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +54,6 @@ public class InvestigationFormFragment extends Fragment {
                         .commit();
             }
         });
-
         victim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +64,6 @@ public class InvestigationFormFragment extends Fragment {
                         .commit();
             }
         });
-
         incident_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +74,6 @@ public class InvestigationFormFragment extends Fragment {
                         .commit();
             }
         });
-
         evidence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,17 +83,15 @@ public class InvestigationFormFragment extends Fragment {
                         .commit();
             }
         });
-
        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.status_container, new CaseDetailFragment())
+                        .replace(R.id.status_container, new InvestigationDetailFragment())
                         .addToBackStack(null)
                         .commit();
             }
         });
-
         return view;
     }
 }

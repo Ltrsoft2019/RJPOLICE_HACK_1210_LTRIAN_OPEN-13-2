@@ -3,60 +3,44 @@ package com.ltrsoft.policeapp.Classes;
 import java.io.Serializable;
 
 public class InvestigationClass implements Serializable {
-    private String fir_id,complaint_subject,complaint_type_name,complaintORfir_name,status_name
-    ,suspect_fname,suspect_mname,suspect_lname,suspect_address,suspect_gender,suspect_mobile_no,suspect_photo,
-            investigation_witness_fname,investigation_witness_mname,investigation_witness_lname,
-            investigation_witness_address,investigation_witness_dob,investigation_witness_gender,
-            investigation_witness_mobile,investigation_witness_photo,victim_fname,victim_mname,victim_lname,
-             victim_address,victim_gender,victim_mobile_no,victim_photo;
+    private String fir_id, complaint_subject, complaint_type_name, complaintORfir_name, status_name, suspect_name,
+            suspect_address, suspect_gender, suspect_mobile_no, suspect_photo,
+            investigation_witness_name, investigation_witness_address, investigation_witness_dob, investigation_witness_gender,
+            investigation_witness_mobile, investigation_witness_photo, victim_name,
+            victim_address, victim_gender, victim_mobile_no, victim_photo, suspect_dob, victim_dob;
 
-    public InvestigationClass(String fir_id, String complaint_subject, String complaint_type_name, String complaintORfir_name, String status_name) {
-        this.fir_id = fir_id;
-        this.complaint_subject = complaint_subject;
-        this.complaint_type_name = complaint_type_name;
-        this.complaintORfir_name = complaintORfir_name;
-        this.status_name = status_name;
-    }
-
-  /*  public InvestigationClass(String fir_id, String complaint_subject, String complaint_type_name,
-                              String complaintORfir_name, String status_name, String suspect_fname,
-                              String suspect_mname, String suspect_lname, String suspect_address,
-                              String suspect_gender, String suspect_mobile_no, String suspect_photo,
-                              String investigation_witness_fname, String investigation_witness_mname,
-                              String investigation_witness_lname, String investigation_witness_address,
+    public InvestigationClass(String fir_id, String complaint_subject, String complaint_type_name,
+                              String complaintORfir_name, String status_name, String suspect_name,
+                              String suspect_address, String suspect_gender, String suspect_mobile_no,
+                              String suspect_photo, String investigation_witness_name, String investigation_witness_address,
                               String investigation_witness_dob, String investigation_witness_gender,
                               String investigation_witness_mobile, String investigation_witness_photo,
-                              String victim_fname, String victim_mname, String victim_lname,
-                              String victim_address, String victim_gender, String victim_mobile_no,
-                              String victim_photo) {
+                              String victim_name, String victim_address, String victim_gender, String victim_mobile_no,
+                              String victim_photo, String suspect_dob, String victim_dob) {
         this.fir_id = fir_id;
         this.complaint_subject = complaint_subject;
         this.complaint_type_name = complaint_type_name;
         this.complaintORfir_name = complaintORfir_name;
         this.status_name = status_name;
-        this.suspect_fname = suspect_fname;
-        this.suspect_mname = suspect_mname;
-        this.suspect_lname = suspect_lname;
+        this.suspect_name = suspect_name;
         this.suspect_address = suspect_address;
         this.suspect_gender = suspect_gender;
         this.suspect_mobile_no = suspect_mobile_no;
         this.suspect_photo = suspect_photo;
-        this.investigation_witness_fname = investigation_witness_fname;
-        this.investigation_witness_mname = investigation_witness_mname;
-        this.investigation_witness_lname = investigation_witness_lname;
+        this.investigation_witness_name = investigation_witness_name;
         this.investigation_witness_address = investigation_witness_address;
         this.investigation_witness_dob = investigation_witness_dob;
         this.investigation_witness_gender = investigation_witness_gender;
         this.investigation_witness_mobile = investigation_witness_mobile;
         this.investigation_witness_photo = investigation_witness_photo;
-        this.victim_fname = victim_fname;
-        this.victim_mname = victim_mname;
-        this.victim_lname = victim_lname;
+        this.victim_name = victim_name;
         this.victim_address = victim_address;
         this.victim_gender = victim_gender;
         this.victim_mobile_no = victim_mobile_no;
         this.victim_photo = victim_photo;
-    }*/
+        this.suspect_dob = suspect_dob;
+        this.victim_dob = victim_dob;
+    }
 
     public String getFir_id() {
         return fir_id;
@@ -98,28 +82,12 @@ public class InvestigationClass implements Serializable {
         this.status_name = status_name;
     }
 
-    public String getSuspect_fname() {
-        return suspect_fname;
+    public String getSuspect_name() {
+        return suspect_name;
     }
 
-    public void setSuspect_fname(String suspect_fname) {
-        this.suspect_fname = suspect_fname;
-    }
-
-    public String getSuspect_mname() {
-        return suspect_mname;
-    }
-
-    public void setSuspect_mname(String suspect_mname) {
-        this.suspect_mname = suspect_mname;
-    }
-
-    public String getSuspect_lname() {
-        return suspect_lname;
-    }
-
-    public void setSuspect_lname(String suspect_lname) {
-        this.suspect_lname = suspect_lname;
+    public void setSuspect_name(String suspect_name) {
+        this.suspect_name = suspect_name;
     }
 
     public String getSuspect_address() {
@@ -154,28 +122,12 @@ public class InvestigationClass implements Serializable {
         this.suspect_photo = suspect_photo;
     }
 
-    public String getInvestigation_witness_fname() {
-        return investigation_witness_fname;
+    public String getInvestigation_witness_name() {
+        return investigation_witness_name;
     }
 
-    public void setInvestigation_witness_fname(String investigation_witness_fname) {
-        this.investigation_witness_fname = investigation_witness_fname;
-    }
-
-    public String getInvestigation_witness_mname() {
-        return investigation_witness_mname;
-    }
-
-    public void setInvestigation_witness_mname(String investigation_witness_mname) {
-        this.investigation_witness_mname = investigation_witness_mname;
-    }
-
-    public String getInvestigation_witness_lname() {
-        return investigation_witness_lname;
-    }
-
-    public void setInvestigation_witness_lname(String investigation_witness_lname) {
-        this.investigation_witness_lname = investigation_witness_lname;
+    public void setInvestigation_witness_name(String investigation_witness_name) {
+        this.investigation_witness_name = investigation_witness_name;
     }
 
     public String getInvestigation_witness_address() {
@@ -218,28 +170,12 @@ public class InvestigationClass implements Serializable {
         this.investigation_witness_photo = investigation_witness_photo;
     }
 
-    public String getVictim_fname() {
-        return victim_fname;
+    public String getVictim_name() {
+        return victim_name;
     }
 
-    public void setVictim_fname(String victim_fname) {
-        this.victim_fname = victim_fname;
-    }
-
-    public String getVictim_mname() {
-        return victim_mname;
-    }
-
-    public void setVictim_mname(String victim_mname) {
-        this.victim_mname = victim_mname;
-    }
-
-    public String getVictim_lname() {
-        return victim_lname;
-    }
-
-    public void setVictim_lname(String victim_lname) {
-        this.victim_lname = victim_lname;
+    public void setVictim_name(String victim_name) {
+        this.victim_name = victim_name;
     }
 
     public String getVictim_address() {
@@ -273,4 +209,21 @@ public class InvestigationClass implements Serializable {
     public void setVictim_photo(String victim_photo) {
         this.victim_photo = victim_photo;
     }
+
+    public String getSuspect_dob() {
+        return suspect_dob;
+    }
+
+    public void setSuspect_dob(String suspect_dob) {
+        this.suspect_dob = suspect_dob;
+    }
+
+    public String getVictim_dob() {
+        return victim_dob;
+    }
+
+    public void setVictim_dob(String victim_dob) {
+        this.victim_dob = victim_dob;
+    }
 }
+

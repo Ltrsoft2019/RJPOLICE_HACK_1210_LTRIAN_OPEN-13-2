@@ -44,17 +44,41 @@ public class InvestigationAdapter extends RecyclerView.Adapter<InvestigationAdap
             holder.icomplain_name.setText(invstclass.getComplaint_subject());
             holder.status.setText(invstclass.getStatus_name());
             holder.category.setText(invstclass.getComplaintORfir_name());
-
-
         holder.investigation_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                AppCompatActivity activity=(AppCompatActivity)v.getContext();
-//
-//                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new InvestigationDetailFragment())
-//                            .commit();
+                AppCompatActivity activity=(AppCompatActivity)v.getContext();
+                InvestigationDetailFragment detailFragment = new InvestigationDetailFragment();
+                Bundle bundle = new Bundle();
 
+                bundle.putString("fir_id",invstclass.getFir_id());
+                bundle.putString("complaint_subject",invstclass.getComplaint_subject());
+                bundle.putString("complaint_type_name",invstclass.getComplaint_type_name());
+                bundle.putString("complaintORfir_name",invstclass.getComplaintORfir_name());
+                bundle.putString("status_name",invstclass.getStatus_name());
+                bundle.putString("suspect_name",invstclass.getSuspect_name());
+                bundle.putString("suspect_address",invstclass.getSuspect_address());
+                bundle.putString("suspect_gender",invstclass.getSuspect_gender());
+                bundle.putString("suspect_mobile_no",invstclass.getSuspect_mobile_no());
+                bundle.putString("suspect_photo",invstclass.getSuspect_photo());
+                bundle.putString("investigation_witness_name",invstclass.getInvestigation_witness_name());
+                bundle.putString("investigation_witness_address",invstclass.getInvestigation_witness_address());
+                bundle.putString("investigation_witness_dob",invstclass.getInvestigation_witness_dob());
+                bundle.putString("investigation_witness_gender",invstclass.getInvestigation_witness_gender());
+                bundle.putString("investigation_witness_mobile",invstclass.getInvestigation_witness_mobile());
+                bundle.putString("investigation_witness_photo",invstclass.getInvestigation_witness_photo());
+                bundle.putString("victim_name",invstclass.getVictim_name());
+                bundle.putString("victim_gender",invstclass.getVictim_gender());
+                bundle.putString("victim_mobile_no",invstclass.getFir_id());
+                bundle.putString("victim_photo",invstclass.getVictim_photo());
+                bundle.putString("suspect_dob",invstclass.getSuspect_dob());
+                bundle.putString("victim_dob",invstclass.getVictim_dob());
 
+                detailFragment.setArguments(bundle);
+                    activity.getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragment_container,detailFragment)
+                            .addToBackStack(null)
+                            .commit();
 
             }
         });
@@ -75,8 +99,6 @@ public class InvestigationAdapter extends RecyclerView.Adapter<InvestigationAdap
             icomplain_name = itemView.findViewById(R.id.icrime_type);
             firno = itemView.findViewById(R.id.icomplain_name);
             investigation_card = itemView.findViewById(R.id.investigation_card);
-
-
 
         }
     }

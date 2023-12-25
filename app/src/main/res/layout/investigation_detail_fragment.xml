@@ -1,227 +1,641 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Investigation.InvestigationDetailFragment">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/investigation_card"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08">
+    android:layout_width="410dp"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true"
+    android:background="#EBFCFB">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/invstback"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.002"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="investigation_id :"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/investigation_id"
+            android:text="Investigation Details"
+            android:textSize="28dp"
+            android:layout_gravity="center"/>
+        <Button
+            android:layout_gravity="center"
+            android:text="Add Info"
+            android:id="@+id/addinfobtn"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="20dp"
-            android:foregroundTint="#DF6060"
-            android:text="."
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIR No:"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/ifirno"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:inputType="text"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="80dp"
-            android:text="investigation_start_date:"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/investigation_start_date"
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Complain Name:"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/invstcompalin_name"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:inputType="text"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="80dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crime Type:"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/crime_type"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:inputType="text"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="120dp"
-            android:text="Investigation End Date:"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/investigation_end_date"
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status:"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:inputType="text"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="120dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Complain/FIR:"
+                android:textSize="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/complainorfir"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:inputType="text"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="160dp"
-            android:text="Location"
-            android:textSize="18dp" />
+            android:backgroundTint="#EBFCFB"
+            >
 
-        <TextView
-            android:id="@+id/investigation_location"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suspect Details"
+                    android:textSize="25dp"
+                    android:textColor="#1DB7AE"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:id="@+id/suspect_photo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/user"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suspect Name:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/s_name"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/sadress"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DOB:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/sdob"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/sgender"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adhaar No:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/s_gender"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mob No"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/suspect_no"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="160dp"
-            android:layout_marginBottom="33dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:backgroundTint="#EBFCFB"
+            >
 
-        <TextView
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Witness Details"
+                    android:textSize="25dp"
+                    android:textColor="#1DB7AE"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:id="@+id/witness_photo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/user"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Witness Name:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/wname"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/wadress"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DOB:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/wdob"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/wgender"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adhaar No:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/wadhar"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mob No"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/witness_mobno"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="200dp"
-            android:text="complaint_id:"
-            android:textSize="18dp" />
+            android:backgroundTint="#EBFCFB"
+            >
 
-        <TextView
-            android:id="@+id/investigation_complaint_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="33dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Victim Details"
+                    android:textSize="25dp"
+                    android:textColor="#1DB7AE"
+                    android:layout_gravity="center"/>
+                <ImageView
+                    android:id="@+id/victim_photo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/user"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Victim Name:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/vname"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="240dp"
-            android:text="incedant_reporting"
-            android:textSize="18dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/vadress"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/investigation_incedant_reporting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="240dp"
-            android:layout_marginBottom="33dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="280dp"
-            android:text="Evidance_property"
-            android:textSize="18dp" />
-
-
-        <TextView
-            android:id="@+id/investigation_evidance_property"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="280dp"
-            android:layout_marginBottom="33dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="320dp"
-            android:text="Investigation_description"
-            android:textSize="18dp" />
-
-
-        <TextView
-            android:id="@+id/investigation_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="320dp"
-            android:layout_marginBottom="33dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="360dp"
-            android:text="created_at"
-            android:textSize="18dp" />
-
-
-        <TextView
-            android:id="@+id/investigation_created_at"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="360dp"
-            android:layout_marginBottom="33dp"
-            android:text=""
-            android:textColor="#0D47A1"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-    </androidx.cardview.widget.CardView>
-
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DOB:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/vdob"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/vgender"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adhaar No:"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/vadhar"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mob No"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:id="@+id/victim_mobno"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="end"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </ScrollView>
-    <Button
-        android:id="@+id/download_btn"
-        android:text="DownLoad Pdf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
