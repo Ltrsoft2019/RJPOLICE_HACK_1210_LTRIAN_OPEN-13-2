@@ -1,5 +1,4 @@
 package com.ltrsoft.policeapp.LoinRegistration;
-
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
@@ -32,10 +31,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class LoginFragment extends Fragment {
     private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/login/police_login.php";
-
     private Button login;
     private TextView register;
     private EditText login_email,login_password;
@@ -50,6 +47,15 @@ public class LoginFragment extends Fragment {
         login_password=view.findViewById(R.id.password);
         bar=view.findViewById(R.id.progressBar);
         bar.setVisibility(View.GONE);
+        SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+
+      //  SharedPreferences.Editor editor = pref.edit();
+
+        if (pref.getBoolean("flag",false)){
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .addToBackStack(null).replace(R.id.main_container, new NavigationFragment())
+                    .commit();
+        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +86,6 @@ public class LoginFragment extends Fragment {
         });
         return view;
     }
-
     private void login(String email, String password) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL, new Response.Listener<String>() {
             @Override
@@ -91,13 +96,17 @@ public class LoginFragment extends Fragment {
                     String msg = jsonObject.getString("Message");
                     if (msg.equals("100")) {
                         Toast.makeText(getContext(), "Login Successfully", Toast.LENGTH_SHORT).show();
+                        bar.setVisibility(View.GONE);
+                        login.setVisibility(View.VISIBLE);
+
+                        SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putBoolean("flag", true)
+                                .apply();
 
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .addToBackStack(null).replace(R.id.main_container, new NavigationFragment())
                                 .commit();
-
-                        bar.setVisibility(View.GONE);
-                        login.setVisibility(View.VISIBLE);
 
 
 

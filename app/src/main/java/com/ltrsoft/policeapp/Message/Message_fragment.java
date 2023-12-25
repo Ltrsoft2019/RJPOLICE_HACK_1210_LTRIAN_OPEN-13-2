@@ -1,5 +1,4 @@
 package com.ltrsoft.policeapp.Message;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,14 +30,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
 public class Message_fragment extends Fragment {
     RecyclerView recyclerView;
     EditText messageEditText;
     ImageButton sendButton;
     List<Message> messageList;
     MessageAdapter messageAdapter;
-
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
@@ -66,16 +63,13 @@ public class Message_fragment extends Fragment {
             messageEditText.setText("");
             callAPI(question);
         });
-
         return view; // Add this line to return the inflated view
     }
-
     void addToChat(String message, String sentBy) {
         messageList.add(new Message(message, sentBy));
         messageAdapter.notifyDataSetChanged();
         recyclerView.smoothScrollToPosition(messageAdapter.getItemCount());
     }
-
     void addResponse(String response){
         requireActivity().runOnUiThread(new Runnable() {
             @Override
@@ -89,11 +83,9 @@ public class Message_fragment extends Fragment {
             }
         });
     }
-
     void callAPI(String question){
         //okhttp
         messageList.add(new Message("Typing... ",Message.Sent_by_Bot));
-
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("model","text-davinci-003");
@@ -109,13 +101,11 @@ public class Message_fragment extends Fragment {
                 .header("Authorization","Bearer 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")
                 .post(body)
                 .build();
-
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 addResponse("Failed to load response due to " + e.getMessage());
             }
-
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
@@ -128,7 +118,6 @@ public class Message_fragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 } else {
                     addResponse("Failed to load response due to " + response.body().toString());
                 }

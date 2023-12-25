@@ -124,7 +124,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.633" />
 
-    <EditText
+    <Spinner
         android:id="@+id/station_id"
         android:layout_width="162dp"
         android:layout_height="39dp"
@@ -150,18 +150,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.709" />
 
-    <EditText
+    <Spinner
         android:id="@+id/position_id"
-        android:layout_width="162dp"
+        android:layout_width="194dp"
         android:layout_height="39dp"
+        android:background="@drawable/spinner2"
         android:paddingLeft="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63"
-        android:background="@drawable/spinner2"/>
+        app:layout_constraintVertical_bias="0.638" />
 
     <Spinner
         android:id="@+id/spinner4"

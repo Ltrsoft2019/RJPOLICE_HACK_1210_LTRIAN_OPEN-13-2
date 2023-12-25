@@ -43,6 +43,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/poiceid"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -63,6 +64,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/batchno"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -83,6 +85,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/stationid"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -103,6 +106,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/fname"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -123,6 +127,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/mname"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -143,6 +148,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/lname"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -163,6 +169,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/pemail"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -184,6 +191,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/pgender"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -204,6 +212,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/pdob"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -224,6 +233,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/mno"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -244,6 +254,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/alno"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -265,6 +276,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/adress"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -285,6 +297,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/stateid"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -305,6 +318,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/districtid"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -325,6 +339,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/cityid"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -345,6 +360,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/positionid"
                 android:layout_width="300dp"
                 android:layout_height="42dp"
@@ -365,6 +381,7 @@
                 android:layout_marginLeft="65dp"/>
 
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/policeadhar"
                 android:layout_width="300dp"
                 android:layout_height="42dp"

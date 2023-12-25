@@ -1,8 +1,6 @@
 package com.ltrsoft.policeapp;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.ltrsoft.policeapp.LoinRegistration.LoginFragment;
 public class MainActivity extends AppCompatActivity {
     @Override

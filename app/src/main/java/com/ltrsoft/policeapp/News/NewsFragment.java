@@ -1,5 +1,4 @@
 package com.ltrsoft.policeapp.News;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
 public class NewsFragment extends Fragment {
     public NewsFragment() {}
     private RecyclerView recyclerView ;
@@ -55,6 +53,7 @@ public class NewsFragment extends Fragment {
                         String  news_date = jsonObject.getString("news_date");
                         String   news_category_name = jsonObject.getString("news_category_name");
                         String news_photo_path =jsonObject.getString("news_category_name");
+
 
                         list.add(new News(news_title,news_description,news_date,news_category_name,news_photo_path));
                         NewsAdapter adapter = new NewsAdapter(list);

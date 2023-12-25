@@ -63,9 +63,7 @@ public class WitnessFormFragment extends Fragment {
         radioGroup=view.findViewById(R.id.radioGroup);
         w_submit=view.findViewById(R.id.w_submit);
         w_progressBar=view.findViewById(R.id.w_progressBar);
-
         w_progressBar.setVisibility(View.INVISIBLE);
-
         w_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,22 +77,18 @@ public class WitnessFormFragment extends Fragment {
                     else {
                         Toast.makeText(getContext(), "Please Select Gender", Toast.LENGTH_SHORT).show();
                     }
-
                     senddata();
             }
         });
-
         return view;
     }
-
-
     public void senddata(){
         RequestQueue requestQueue= Volley.newRequestQueue(getContext());
         StringRequest stringRequest =new StringRequest(Request.Method.POST,
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "Record Saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Record Saved"+response.toString(), Toast.LENGTH_LONG).show();
                 w_progressBar.setVisibility(View.INVISIBLE);
                 w_submit.setVisibility(View.VISIBLE);
                 w_fname.setText("");
@@ -109,13 +103,9 @@ public class WitnessFormFragment extends Fragment {
                 w_country.setText("");
                 w_statename.setText("");
                 w_city.setText("");
-
-
             }
         }, new Response.ErrorListener() {
             @Override
-
-
             public void onErrorResponse(VolleyError error) {
                 w_progressBar.setVisibility(View.INVISIBLE);
                w_submit.setVisibility(View.VISIBLE);
@@ -126,9 +116,6 @@ public class WitnessFormFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> map=new HashMap<>();
-
-
-
                 map.put("investigation_witness_fname",w_fname.getText().toString());
                 map.put("investigation_witness_mname",w_mname.getText().toString());
                 map.put("investigation_witness_lname",w_lname.getText().toString());

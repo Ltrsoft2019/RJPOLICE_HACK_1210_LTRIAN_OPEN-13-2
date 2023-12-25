@@ -43,7 +43,7 @@ public class InvestigationFragment extends Fragment {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, INVESTIGATION_URL, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(getContext(), "response"+response, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "response"+response, Toast.LENGTH_SHORT).show();
                 for (int i=0 ; i<response.length();i++) {
                     try {
                       JSONObject jsonObject = response.getJSONObject(i);

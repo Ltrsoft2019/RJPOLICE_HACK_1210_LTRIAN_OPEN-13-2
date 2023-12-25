@@ -1,7 +1,10 @@
 package com.ltrsoft.policeapp.Profile;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -66,6 +69,11 @@ public class ProfileFragment extends Fragment {
                 builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putBoolean("flag", false)
+                                .apply();
+
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.main_container, new LoginFragment())
                                 .commit();
@@ -78,7 +86,6 @@ public class ProfileFragment extends Fragment {
                     }
                 });
                 builder.show();
-
             }
         });
 

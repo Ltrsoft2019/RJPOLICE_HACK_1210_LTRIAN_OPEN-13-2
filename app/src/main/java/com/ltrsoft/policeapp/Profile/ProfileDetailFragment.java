@@ -1,5 +1,4 @@
 package com.ltrsoft.policeapp.Profile;
-
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -9,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -21,7 +21,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ltrsoft.policeapp.EditFragment;
+import com.ltrsoft.policeapp.LoinRegistration.LoginFragment;
 import com.ltrsoft.policeapp.R;
 
 import org.json.JSONArray;
@@ -30,18 +33,19 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class ProfileDetailFragment extends Fragment {
     public ProfileDetailFragment() {    }
     private final static String POLICE_DETAIL_URL = "http://rj.ltr-soft.com/public/police_api/data/police_read.php";
     private TextView police_id,batch_number,station_id,police_fname,police_mname,police_lname
             ,police_email,police_gender,police_dob,police_mobile1,police_mobile2,police_address,
-            position_name,city_name,district_name,state_name,country_name;
+            position_name,city_name,district_name,state_name,police_adhar;
+    private Button button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.profile_detail_fragment, container, false);
+
         police_id = view.findViewById(R.id.poiceid);
         batch_number = view.findViewById(R.id.batchno);
         station_id = view.findViewById(R.id.stationid);
@@ -58,16 +62,27 @@ public class ProfileDetailFragment extends Fragment {
         city_name = view.findViewById(R.id.cityid);
         district_name = view.findViewById(R.id.districtid);
         state_name = view.findViewById(R.id.stateid);
+        police_adhar = view . findViewById(R.id.policeadhar);
 
 
-
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, POLICE_DETAIL_URL, null, new Response.Listener<JSONArray>() {
+        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(JSONArray response) {
-                Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
-                for (int i = 0 ; i < response.length() ; i++){
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new EditFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        StringRequest request = new StringRequest(Request.Method.POST, POLICE_DETAIL_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+               // Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0 ; i < jsonArray.length() ; i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
                         police_id.setText(jsonObject.getString("police_id"));
                         batch_number.setText(jsonObject.getString("batch_number"));
                         station_id.setText(jsonObject.getString("station_id"));
@@ -85,34 +100,18 @@ public class ProfileDetailFragment extends Fragment {
                         district_name.setText(jsonObject.getString("district_name"));
                         state_name.setText(jsonObject.getString("state_name"));
                         position_name.setText(jsonObject.getString("position_name"));
+                        police_adhar.setText(jsonObject.getString("police_adhar"));
 
-                    /*    String police_id = jsonObject.getString("police_id");
-                        String batch_number = jsonObject.getString("batch_number");
-                        String station_id = jsonObject.getString("batch_number");
-                        String police_fname = jsonObject.getString("batch_number");
-                        String police_mname = jsonObject.getString("batch_number");
-                        String police_lname = jsonObject.getString("police_lname");
-                        String police_email = jsonObject.getString("police_email");
-                        String police_gender = jsonObject.getString("police_gender");
-                        String police_dob = jsonObject.getString("police_dob");
-                        String police_mobile1 = jsonObject.getString("police_mobile1");
-                        String police_mobile2 = jsonObject.getString("police_mobile2");
-                        String police_address = jsonObject.getString("police_address");*/
-
-
-
-                    } catch (JSONException e) {
-                        Toast.makeText(getContext(), "json error"+e.toString(), Toast.LENGTH_SHORT).show();
-                        throw new RuntimeException(e);
                     }
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "error = "+e.toString(), Toast.LENGTH_SHORT).show();
+                    throw new RuntimeException(e);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "error response "+error.toString(), Toast.LENGTH_LONG).show();
-                Log.d("errro","erro"+error.toString());
-
+                Toast.makeText(getContext(), "response erro"+error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -132,6 +131,7 @@ public class ProfileDetailFragment extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
+
         return view;
     }
 }
