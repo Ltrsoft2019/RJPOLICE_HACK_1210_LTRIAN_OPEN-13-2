@@ -1,4 +1,4 @@
-package com.ltrsoft.policeapp.Case;
+package com.ltrsoft.policeapp.Investigation;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;

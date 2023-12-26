@@ -42,7 +42,7 @@ public class Registration_three extends Fragment {
     private Spinner station_id,position_id,district_id,ciry_id,spinner6;
     private ArrayAdapter adapter;
     private TextView Login_txt;
-    private String v1,v2,v3,v4,v5,v6,v7,v8,v9;
+    private String v1,v2,v3,v4,v5,v6,v7,v8,v9,v10;
     private EditText batch_id;
     private ProgressBar progressBar;
     private  RequestQueue requestQueue;
@@ -65,13 +65,15 @@ public class Registration_three extends Fragment {
 
         Login_txt=v.findViewById(R.id.Login_txt);
         progressBar=v.findViewById(R.id.progressBar);
-
+        progressBar.setVisibility(View.VISIBLE);
         loadSattion();
         loadCity();
         loadPosition();
-       loadDistrict();
+        loadDistrict();
+     //   if (list!=null && listcity!=null && liststation!=null && listdistrict!=null){
+       //     progressBar.setVisibility(View.INVISIBLE);
+       // }
 
-        progressBar.setVisibility(View.INVISIBLE);
 
         Bundle b = getArguments();
         v1=b.getString("dob");
@@ -83,6 +85,7 @@ public class Registration_three extends Fragment {
         v7=b.getString("temnname");
         v8=b.getString("tememail");
         v9=b.getString("tempassword");
+        v10=b.getString("userimg");
         back3_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +138,7 @@ public class Registration_three extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "error"+error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -230,6 +233,7 @@ public class Registration_three extends Fragment {
         };
         RequestQueue requestQueue= Volley.newRequestQueue(getContext());
         requestQueue.add(request);
+        progressBar.setVisibility(View.INVISIBLE);
     }
     private void loadPosition() {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, POSITON_URL, null,
@@ -270,13 +274,9 @@ public class Registration_three extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.main_container, new LoginFragment())
                         .commit();
-
-
             }
         }, new Response.ErrorListener() {
             @Override
-
-
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.INVISIBLE);
                 submit_reg.setVisibility(View.VISIBLE);
@@ -296,6 +296,7 @@ public class Registration_three extends Fragment {
                 map.put("police_lname",v7.toString());
                 map.put("police_email",v8.toString());
                 map.put("police_password",v9.toString());
+                map.put("police_photo_path",v9.toString());
 
                map.put("station_id",station_id.getSelectedItem().toString());
                 map.put("batch_number",batch_id.getText().toString());

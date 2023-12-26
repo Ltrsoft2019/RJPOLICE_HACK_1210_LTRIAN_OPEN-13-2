@@ -1,4 +1,4 @@
-package com.ltrsoft.policeapp.Case;
+package com.ltrsoft.policeapp.Investigation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -79,6 +79,8 @@ public class WitnessFormFragment extends Fragment {
         user_gallery = view.findViewById(R.id.user_gallery);
         user_photo = view.findViewById(R.id.user_photo);
 
+        Bundle bundle= getArguments();
+        bundle.getString("");
         w_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

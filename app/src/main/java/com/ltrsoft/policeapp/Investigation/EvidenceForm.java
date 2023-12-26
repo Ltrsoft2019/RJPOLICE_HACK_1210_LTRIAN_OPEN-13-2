@@ -1,4 +1,4 @@
- package com.ltrsoft.policeapp.Case;
+ package com.ltrsoft.policeapp.Investigation;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;

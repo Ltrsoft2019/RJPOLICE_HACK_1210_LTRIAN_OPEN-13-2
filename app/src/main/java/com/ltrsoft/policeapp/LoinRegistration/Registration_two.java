@@ -2,9 +2,11 @@ package com.ltrsoft.policeapp.LoinRegistration;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.policeapp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +47,7 @@ public class Registration_two extends Fragment {
     private EditText dob,mobile,altmob;
     private RadioGroup radioGroup;
     private String tem_fname,tem_mname,tem_nname,tem_email,tem_password;
+    private String encodeImage;
     private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/data/police_insert.php";
 
 
@@ -108,6 +113,9 @@ public class Registration_two extends Fragment {
                 b.putString("temnname",tem_nname.toString());
                 b.putString("tememail",tem_email.toString());
                 b.putString("tempassword",tem_password.toString());
+                if (encodeImage!=null){
+                    b.putString("userimg",encodeImage);
+                }
 
                 registrationThree.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -147,11 +155,18 @@ public class Registration_two extends Fragment {
         if (requestCode == REQUEST_IMAGE_GET && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 try {
-                    // Get the selected image URI
                     Uri imageUri = data.getData();
-
-                    // Display the selected image in ImageView
                     user_photo.setImageURI(imageUri);
+                    InputStream inputStream = getContext().getContentResolver().openInputStream(imageUri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+                    byte[] bytes = byteArrayOutputStream.toByteArray();
+                    encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
+                  //  Toast.makeText(getContext(), "encode image"+encodeImage, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

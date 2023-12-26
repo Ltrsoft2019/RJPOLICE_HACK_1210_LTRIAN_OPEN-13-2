@@ -3,9 +3,11 @@ package com.ltrsoft.policeapp.Case;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 import com.ltrsoft.policeapp.R;
 
 import java.io.File;
@@ -121,13 +124,15 @@ public class CaseDetailFragment extends Fragment {
                     PdfWriter writer = new PdfWriter(new FileOutputStream(pdfFile));
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf);
-                    document.add(new Paragraph("            Case Details"));
+                    Paragraph paragraph = new Paragraph("Case Details");
+                    paragraph.setTextAlignment(TextAlignment.CENTER);
+                    document.add(paragraph);
                     document.add(new Paragraph("Complain Name :         "+b.getString("complain_name")));
-                    document.add(new Paragraph("Crime Type    :         "+b.getString("complain_name")));
-                    document.add(new Paragraph("Complain Description :  "+b.getString("complain_name")));
-                    document.add(new Paragraph("Complain Against :      "+b.getString("complain_name")));
-                    document.add(new Paragraph("Incident Date  :        "+b.getString("complain_name")));
-                    document.add(new Paragraph("Address :                "));
+                    document.add(new Paragraph("Crime Type    :         "+b.getString("crime_type")));
+                    document.add(new Paragraph("Complain Description :  "+b.getString("complaint_description")));
+                    document.add(new Paragraph("Complain Against :      "+b.getString("complaint_against")));
+                    document.add(new Paragraph("Incident Date  :        "+b.getString("incident_date")));
+                    document.add(new Paragraph("Address :                "+b.getString("user_address")));
                     document.close();
                     Log.d("PdfGenerator", "PDF created successfully at: " + pdfFile.getAbsolutePath());
                     Toast.makeText(getContext(), "PDF created successfully at: " + pdfFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
@@ -135,6 +140,16 @@ public class CaseDetailFragment extends Fragment {
                     e.printStackTrace();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
+                }
+
+                String pdfFileName ="example.pdf";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse(pdfFile.getAbsolutePath()), "application/pdf");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getContext(), "You have No pdf Viewer please download", Toast.LENGTH_SHORT).show();
+                    Log.d("pdf exception",e.toString());
                 }
             }
         });

@@ -1,4 +1,4 @@
-package com.ltrsoft.policeapp.Case;
+package com.ltrsoft.policeapp.Investigation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -30,8 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.ltrsoft.policeapp.LoinRegistration.LoginFragment;
-import com.ltrsoft.policeapp.Navigation.NavigationFragment;
+import com.ltrsoft.policeapp.Investigation.InvestigationFormFragment;
 import com.ltrsoft.policeapp.R;
 
 import java.io.ByteArrayOutputStream;
@@ -39,83 +37,78 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VictimFormFragment extends Fragment {
-
-    private EditText vv_firname,vv_fname,vv_mname,v_lname,vf_dob,v_mobile,v_address,v_email,v_contryname,v_statename,
-            v_distname,v_cityname,v_addhar;
+public class SuspectFormFragment extends Fragment {
+    public SuspectFormFragment() {}
     private static final int REQUEST_IMAGE_GET = 1;
 
+    private TextView fname,mname,lanme,adress,mobile,dob,email,adhar,user_gallery;
+    private Button submit;
+     private ImageView back,user_photo;
+    private RadioGroup radioGroup;
+    private RadioButton male_btn,femail_btn;
+    private String gender;
+    private ProgressBar progressBar;
+    private String encodeImage;
 
-    private Button v_submit;
+    private String id="2023-12-14-1";
+    private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
 
-    private RadioButton v_male_btn,v_female_btn;
-    private String gender,encodeImage;
-    private ProgressBar v_progressbar;
-
-    private String firid="2023-12-14-1";
-
-    private RadioGroup v_radioGroup;
-    private TextView user_gallery;
-
-    private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/investigation_victim/create_investigation_victim.php";
-
-    private ImageView v_back,user_photo;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.victim_form_form, container, false);
-
-        vv_firname=view.findViewById(R.id.vv_firname);
-        vv_fname=view.findViewById(R.id.vv_fname);
-        vv_mname=view.findViewById(R.id.vv_mname);
-        v_lname=view.findViewById(R.id.v_lname);
-        vf_dob=view.findViewById(R.id.vf_dob);
-        v_mobile=view.findViewById(R.id.v_mobile);
-        v_address=view.findViewById(R.id.v_address);
-        v_email=view.findViewById(R.id.v_email);
-        v_contryname=view.findViewById(R.id.v_contryname);
-        v_statename=view.findViewById(R.id.v_statename);
-        v_distname=view.findViewById(R.id.v_distname);
-        v_cityname=view.findViewById(R.id.v_cityname);
-        v_addhar=view.findViewById(R.id.v_addhar);
-        v_submit=view.findViewById(R.id.v_submit);
-        v_male_btn=view.findViewById(R.id.v_male_btn);
-        v_female_btn=view.findViewById(R.id.v_female_btn);
-        v_progressbar=view.findViewById(R.id.v_progressbar);
-        v_radioGroup= view.findViewById(R.id.v_radioGroup);
-        v_back=view.findViewById(R.id.v_back);
-
-
+        View view = inflater.inflate(R.layout.suspect_form_fragment, container, false);
+        fname  = view.findViewById(R.id.sfname);
+        mname  = view.findViewById(R.id.smname);
+        lanme  = view.findViewById(R.id.slname);
+        adress  = view.findViewById(R.id.sadress);
+        mobile  = view.findViewById(R.id.smobno);
+        dob  = view.findViewById(R.id.sdob);
+        email  = view.findViewById(R.id.semail);
+        adhar  = view.findViewById(R.id.sadhar);
         user_gallery = view.findViewById(R.id.user_gallery);
         user_photo = view.findViewById(R.id.user_photo);
 
-        v_progressbar.setVisibility(View.INVISIBLE);
 
-        v_back.setOnClickListener(new View.OnClickListener() {
+        back=view.findViewById(R.id.suspect_back);
+
+        submit = view.findViewById(R.id.suspect_submit);
+
+        radioGroup=view.findViewById(R.id.radioGroup);
+        male_btn=view.findViewById(R.id.male_btn);
+        femail_btn=view.findViewById(R.id.femail_btn);
+
+        progressBar=view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(View.INVISIBLE);
+
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null) .replace(R.id.main_container,new NavigationFragment())
+                        .replace(R.id.fragment_container, new InvestigationFormFragment())
+                        .addToBackStack(null)
                         .commit();
             }
         });
-        v_submit.setOnClickListener(new View.OnClickListener() {
+
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(v_male_btn.isChecked()){
-                    gender=v_male_btn.getText().toString();
-                } else if (v_female_btn.isChecked()) {
-                    gender=v_female_btn.getText().toString();
+                if(male_btn.isChecked()){
+                    gender=male_btn.getText().toString();
+                } else if (femail_btn.isChecked()) {
+                    gender=femail_btn.getText().toString();
 
                 }
                 else {
                     Toast.makeText(getContext(), "Please Select Gender", Toast.LENGTH_SHORT).show();
                 }
+                submit.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 senddata();
             }
         });
-
 
         user_gallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,41 +127,36 @@ public class VictimFormFragment extends Fragment {
         return view;
     }
 
-
     public void senddata(){
         RequestQueue requestQueue= Volley.newRequestQueue(getContext());
         StringRequest stringRequest =new StringRequest(Request.Method.POST,
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "Data Saved Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "respnse = "+response.toString(), Toast.LENGTH_LONG).show();
 
-                v_progressbar.setVisibility(View.GONE);
-                v_submit.setVisibility(View.VISIBLE);
-
-                vv_firname.setText("");
-                 vv_fname.setText("");
-                vv_mname.setText("");
-                v_lname.setText("");
-                vf_dob.setText("");
-                v_mobile.setText("");
-                v_address.setText("");
-                v_email.setText("");
-                v_contryname.setText("");
-                v_statename.setText("");
-                v_distname.setText("");
-                v_cityname.setText("");
-                v_addhar.setText("");
-                v_radioGroup.clearCheck();
+                progressBar.setVisibility(View.INVISIBLE);
+                submit.setVisibility(View.VISIBLE);
+                fname.setText("");
+                mname.setText("");
+                lanme.setText("");
+                adress.setText("");
+                mobile.setText("");
+                dob.setText("");
+                email.setText("");
+                adhar.setText("");
+                radioGroup.clearCheck();
                 user_photo.setImageResource(R.drawable.person);
+
+
             }
         }, new Response.ErrorListener() {
             @Override
 
 
             public void onErrorResponse(VolleyError error) {
-                v_progressbar.setVisibility(View.INVISIBLE);
-                v_submit.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+                submit.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
             }
         }) {
@@ -176,27 +164,23 @@ public class VictimFormFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> map=new HashMap<>();
-
-                map.put("",vv_firname.getText().toString());
-                map.put("victim_fname",vv_fname.getText().toString());
-                map.put("victim_mname",vv_mname.getText().toString());
-                map.put("victim_lname",v_lname.getText().toString());
-                map.put("victim_dob",vf_dob.getText().toString());
-                map.put("victim_mobile_no",v_mobile.getText().toString());
-                map.put("victim_address",v_address.getText().toString());
-                map.put("victim_email",v_email.getText().toString());
-                map.put("country_id",v_contryname.getText().toString());
-                map.put("state_id",v_statename.getText().toString());
-                map.put("district_id",v_distname.getText().toString());
-                map.put("city_id",v_cityname.getText().toString());
-                map.put("victim_adhar",v_addhar.getText().toString());
-                map.put("fir_id",firid.toString());
-                map.put("victim_photo",encodeImage.toString());
+                map.put("suspect_fname",fname.getText().toString());
+                map.put("suspect_mname",mname.getText().toString());
+                map.put("suspect_lname",lanme.getText().toString());
+                map.put("suspect_address",adress.getText().toString());
+                map.put("suspect_dob",dob.getText().toString());
+                map.put("suspect_gender",gender.toString());
+                map.put("suspect_mobile_no",mobile.getText().toString());
+                map.put("suspect_email",email.getText().toString());
+                map.put("suspect_adhar",adhar.getText().toString());
+                map.put("fir_id",id.toString());
+                map.put("suspect_photo",encodeImage.toString());
                 return map;
             }
         };
         requestQueue.add(stringRequest);
     }
+
 
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -212,22 +196,20 @@ public class VictimFormFragment extends Fragment {
                 try {
                     // Get the selected image URI
                     Uri imageUri = data.getData();
-
                     InputStream inputStream =getContext().getContentResolver().openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-
                     // Display the selected image in ImageView
                     user_photo.setImageURI(imageUri);
-
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
                     encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
     }
+
+
 }
