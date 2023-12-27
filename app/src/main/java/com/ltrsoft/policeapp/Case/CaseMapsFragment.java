@@ -47,6 +47,7 @@ import com.ltrsoft.policeapp.R;
 
 import java.util.ArrayList;
 
+
 public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,RouteListener {
     public CaseMapsFragment() {}
     GoogleMap gmap;
@@ -65,6 +66,7 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,Rou
         Bundle b = getArguments();
         double lat=b.getDouble("lattitude");
         double lon = b.getDouble("longitude");
+//        Toast.makeText(activity, "lat="+lat, Toast.LENGTH_SHORT).show();
         destinationlocation = new LatLng(lat,lon);
         activity = (AppCompatActivity) view.getContext();
 
@@ -117,10 +119,12 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,Rou
         gmap.getUiSettings().setCompassEnabled(true);
         gmap.getUiSettings().setZoomControlsEnabled(true);
        fetchMyLocation();
-     //   getRoute(userLocation,destinationlocation);
+        //getRoute(userLocation,destinationlocation);
     }
 
     private void getRoute(LatLng userLocation, LatLng destinationlocation) {
+       // userLocation=new LatLng(18.4088,76.5604);
+        destinationlocation=new LatLng(18.2505,76.4997);
         if (userLocation!=null&&destinationlocation!=null) {
             RouteDrawing routeDrawing = new RouteDrawing.Builder()
                     .context(getContext())  // pass your activity or fragment's context
@@ -133,7 +137,12 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,Rou
             routeDrawing.execute();
         }
         else {
-            Toast.makeText(activity, "null", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(activity, "null", Toast.LENGTH_SHORT).show();
+            if (userLocation != null) {
+                Toast.makeText(activity, "userloaction is null", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity, "destination location", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -175,19 +184,19 @@ public class CaseMapsFragment extends Fragment implements OnMapReadyCallback,Rou
         task.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(activity, "failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "failed"+e.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
     @Override
     public void onRouteFailure(ErrorHandling e) {
         Log.e("error","err="+e.getMessage());
-        Toast.makeText(activity, "route failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "route failed"+e.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRouteStart() {
-        Toast.makeText(activity, "route started", Toast.LENGTH_SHORT).show();
+       Toast.makeText(activity, "route started", Toast.LENGTH_SHORT).show();
     }
 
     @Override

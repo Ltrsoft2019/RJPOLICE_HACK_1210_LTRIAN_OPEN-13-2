@@ -98,6 +98,10 @@ public class LoginFragment extends Fragment {
 
                         bar.setVisibility(View.GONE);
                         login.setVisibility(View.VISIBLE);
+                        SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putBoolean("flag", true)
+                                .apply();
 
 
 

@@ -73,7 +73,6 @@ public class ProfileFragment extends Fragment {
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putBoolean("flag", false)
                                 .apply();
-
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.main_container, new LoginFragment())
                                 .commit();

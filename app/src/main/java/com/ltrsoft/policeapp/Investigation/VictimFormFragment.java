@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class VictimFormFragment extends Fragment {
     private RadioGroup v_radioGroup;
     private TextView user_gallery;
 
-    private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/investigation_victim/create_investigation_victim.php";
+    private static final String BASE_URL = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
 
     private ImageView v_back,user_photo;
     @Override
@@ -141,7 +142,7 @@ public class VictimFormFragment extends Fragment {
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "Data Saved Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Response="+response.toString(), Toast.LENGTH_LONG).show();
 
                 v_progressbar.setVisibility(View.GONE);
                 v_submit.setVisibility(View.VISIBLE);
@@ -164,12 +165,8 @@ public class VictimFormFragment extends Fragment {
             }
         }, new Response.ErrorListener() {
             @Override
-
-
             public void onErrorResponse(VolleyError error) {
-                v_progressbar.setVisibility(View.INVISIBLE);
-                v_submit.setVisibility(View.VISIBLE);
-                Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
+                VictimFormFragment.this.onErrorResponse(error);
             }
         }) {
             @Nullable
@@ -177,24 +174,29 @@ public class VictimFormFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> map=new HashMap<>();
 
-                map.put("",vv_firname.getText().toString());
-                map.put("victim_fname",vv_fname.getText().toString());
-                map.put("victim_mname",vv_mname.getText().toString());
-                map.put("victim_lname",v_lname.getText().toString());
-                map.put("victim_dob",vf_dob.getText().toString());
-                map.put("victim_mobile_no",v_mobile.getText().toString());
-                map.put("victim_address",v_address.getText().toString());
-                map.put("victim_email",v_email.getText().toString());
-                map.put("country_id",v_contryname.getText().toString());
-                map.put("state_id",v_statename.getText().toString());
-                map.put("district_id",v_distname.getText().toString());
-                map.put("city_id",v_cityname.getText().toString());
-                map.put("victim_adhar",v_addhar.getText().toString());
                 map.put("fir_id",firid.toString());
-                map.put("victim_photo",encodeImage.toString());
+                map.put("investigation_witness_fname",vv_fname.getText().toString());
+                map.put("investigation_witness_mname",vv_mname.getText().toString());
+                map.put("investigation_witness_lname",v_lname.getText().toString());
+                map.put("investigation_witness_dob",vf_dob.getText().toString());
+                map.put("investigation_witness_mobile",v_mobile.getText().toString());
+                map.put("investigation_witness_address",v_address.getText().toString());
+                map.put("investigation_witness_email",v_email.getText().toString());
+                map.put("country_id","1");
+                map.put("state_id","1");
+                map.put("district_id","1");
+                map.put("city_id","1");
+
+//                map.put("country_id",v_contryname.getText().toString());
+//                map.put("state_id",v_statename.getText().toString());
+//                map.put("district_id",v_distname.getText().toString());
+//                map.put("city_id",v_cityname.getText().toString());
+                map.put("investigation_witness_adhar",v_addhar.getText().toString());
+                map.put("investigation_witness_photo",encodeImage.toString());
                 return map;
             }
         };
+
         requestQueue.add(stringRequest);
     }
 
@@ -230,4 +232,15 @@ public class VictimFormFragment extends Fragment {
             }
         }
     }
+    public void onErrorResponse(VolleyError error) {
+        v_progressbar.setVisibility(View.INVISIBLE);
+        v_submit.setVisibility(View.VISIBLE);
+        if (error.networkResponse != null) {
+            int statusCode = error.networkResponse.statusCode;
+            Log.e("StatusCode", String.valueOf(statusCode));
+        }
+        Toast.makeText(getContext(), "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+
 }

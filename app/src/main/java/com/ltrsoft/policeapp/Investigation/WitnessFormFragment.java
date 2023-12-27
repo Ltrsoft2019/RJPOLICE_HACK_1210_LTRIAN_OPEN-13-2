@@ -120,22 +120,24 @@ public class WitnessFormFragment extends Fragment {
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "Witness Data Saved Successfully"+response.toString(), Toast.LENGTH_LONG).show();
-                w_progressBar.setVisibility(View.INVISIBLE);
-                w_submit.setVisibility(View.VISIBLE);
-                w_fname.setText("");
-                w_mname.setText("");
-                w_lname.setText("");
-                w_address.setText("");
-                w_dob.setText("");
-                w_mobile.setText("");
-                w_email.setText("");
-                w_adhar.setText("");
-                radioGroup.clearCheck();
-                w_country.setText("");
-                w_statename.setText("");
-                w_city.setText("");
-                user_photo.setImageResource(R.drawable.person);
+                Toast.makeText(getContext(), "response = " + response.toString(), Toast.LENGTH_LONG).show();
+                if (response.equals("success")) {
+                    w_progressBar.setVisibility(View.INVISIBLE);
+                    w_submit.setVisibility(View.VISIBLE);
+                    w_fname.setText("");
+                    w_mname.setText("");
+                    w_lname.setText("");
+                    w_address.setText("");
+                    w_dob.setText("");
+                    w_mobile.setText("");
+                    w_email.setText("");
+                    w_adhar.setText("");
+                    radioGroup.clearCheck();
+                    w_country.setText("");
+                    w_statename.setText("");
+                    w_city.setText("");
+                    user_photo.setImageResource(R.drawable.person);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -157,9 +159,12 @@ public class WitnessFormFragment extends Fragment {
                 map.put("investigation_witness_mobile",w_mobile.getText().toString());
                 map.put("investigation_witness_email",w_email.getText().toString());
                 map.put("investigation_witness_adhar",w_adhar.getText().toString());
-                map.put("country_id",w_country.getText().toString());
-                map.put("state_id",w_statename.getText().toString());
-                map.put("city_id",w_city.getText().toString());
+                map.put("country_id","1");
+                map.put("state_id","1");
+                map.put("city_id","1");
+//                map.put("country_id",w_country.getText().toString());
+//                map.put("state_id",w_statename.getText().toString());
+//                map.put("city_id",w_city.getText().toString());
                 map.put("investigation_witness_gender",gender.toString());
                 map.put("fir_id",fir.toString());
                 map.put("investigation_witness_photo",encodeImage.toString());
@@ -192,8 +197,6 @@ public class WitnessFormFragment extends Fragment {
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
                     encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

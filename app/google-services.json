@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280540139018",
+    "project_id": "policeapp-3cb51",
+    "storage_bucket": "policeapp-3cb51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280540139018:android:5cdaa2b6e67f5fd30399f3",
+        "android_client_info": {
+          "package_name": "com.ltrsoft.policeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJhEnnJbP7sa7BvLtMcLRKiPivUSBTICg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

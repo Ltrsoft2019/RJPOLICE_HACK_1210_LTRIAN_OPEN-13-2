@@ -10,12 +10,12 @@
  <com.google.android.material.bottomnavigation.BottomNavigationView
      android:id="@+id/status_navigation"
      android:background="@drawable/d2"
-     app:circularflow_radiusInDP="80dp"
      android:layout_width="match_parent"
      android:layout_marginHorizontal="50dp"
      android:layout_height="wrap_content"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintCircleRadius="150dp"
+
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toTopOf="parent"
      app:menu="@menu/stattus_menu" />

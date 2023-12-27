@@ -2,15 +2,20 @@ package com.ltrsoft.policeapp.Case;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
@@ -36,8 +41,11 @@ import com.ltrsoft.policeapp.R;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.Objects;
 
 public class CaseDetailFragment extends Fragment {
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE =100 ;
+
     public CaseDetailFragment() {}
     public TextView adress,incident_date,victim,compalin_desc,crime_type,complain_name;
     public Button get_loaction,add_info_btn;
@@ -63,6 +71,7 @@ public class CaseDetailFragment extends Fragment {
         incident_date=view.findViewById(R.id.incident_date);
         download=view.findViewById(R.id.downloadpdf);
 
+
         Bundle b = getArguments();
         if (b!=null) {
             complain_name.setText(b.getString("complain_name"));
@@ -71,9 +80,11 @@ public class CaseDetailFragment extends Fragment {
             victim.setText(b.getString("complaint_against"));
             adress.setText(b.getString("user_address"));
             incident_date.setText(b.getString("incident_date"));
-            latitude = Double.parseDouble(b.getString("latitude"));
-            longitude = Double.parseDouble(b.getString("longitude"));
+            Toast.makeText(getContext(), "lat = "+b.getString("latitude"), Toast.LENGTH_SHORT).show();
+            latitude = 18.2505;
+            longitude=76.5604;
         }
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,23 +94,20 @@ public class CaseDetailFragment extends Fragment {
                         .commit();
             }
         });
-
         get_loaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CaseMapsFragment mapsFragment =new CaseMapsFragment();
                // AppCompatActivity activity=(AppCompatActivity)view.getContext();
                 Bundle bundle = new Bundle();
-                bundle.putDouble("lattitude",latitude);
+                bundle.putDouble("latitude",latitude);
                 bundle.putDouble("longitude",longitude);
                 mapsFragment.setArguments(bundle);
 
                 LocationManager locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
-
                 if (locationManager != null) {
                     boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
                     boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
                     if (isGpsEnabled || isNetworkEnabled) {
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, mapsFragment)
@@ -109,18 +117,17 @@ public class CaseDetailFragment extends Fragment {
                         showEnableLocationDialog();
                     }
                 }
-
-
             }
         });
 
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                checkPermissions();
                 File pdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "example.pdf");
 
                 try {
-
                     PdfWriter writer = new PdfWriter(new FileOutputStream(pdfFile));
                     PdfDocument pdf = new PdfDocument(writer);
                     Document document = new Document(pdf);
@@ -137,12 +144,12 @@ public class CaseDetailFragment extends Fragment {
                     Log.d("PdfGenerator", "PDF created successfully at: " + pdfFile.getAbsolutePath());
                     Toast.makeText(getContext(), "PDF created successfully at: " + pdfFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
+                    Toast.makeText(getContext(), "error = "+e.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 } catch (FileNotFoundException e) {
+                    Toast.makeText(getContext(), "error = "+e.toString(), Toast.LENGTH_SHORT).show();
                     throw new RuntimeException(e);
                 }
-
-                String pdfFileName ="example.pdf";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(Uri.parse(pdfFile.getAbsolutePath()), "application/pdf");
                 try {
@@ -153,9 +160,26 @@ public class CaseDetailFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
+
+    private void createPDF(File pdfFile,Bundle b) {
+
+    }
+
+    private void checkPermissions() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        } else {
+            Toast.makeText(getContext(), "acccess denied", Toast.LENGTH_SHORT).show();
+            checkPermissions();
+        }
+    }
+
     private void showEnableLocationDialog() {
         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
       /*  CaseMapsFragment mapsFragment =new CaseMapsFragment()
@@ -166,4 +190,17 @@ public class CaseDetailFragment extends Fragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Permission accesed. Cannot save PDF.", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getContext(), "Permission denied. Cannot save PDF.", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
 }
