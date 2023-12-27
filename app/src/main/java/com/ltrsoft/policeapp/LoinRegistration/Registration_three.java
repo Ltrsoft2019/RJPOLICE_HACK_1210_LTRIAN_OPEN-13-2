@@ -157,7 +157,7 @@ public class Registration_three extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         listcity = new ArrayList<>();
-                        Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0 ; i < jsonArray.length() ; i ++){
@@ -268,7 +268,7 @@ public class Registration_three extends Fragment {
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "Registration Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Registration Successfully"+response.toString(), Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
                 submit_reg.setVisibility(View.VISIBLE);
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -280,7 +280,7 @@ public class Registration_three extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.INVISIBLE);
                 submit_reg.setVisibility(View.VISIBLE);
-                Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "volley error "+error, Toast.LENGTH_SHORT).show();
             }
         }) {
             @Nullable
@@ -297,6 +297,7 @@ public class Registration_three extends Fragment {
                 map.put("police_email",v8.toString());
                 map.put("police_password",v9.toString());
                 map.put("police_photo_path",v9.toString());
+                map.put("police_addrddress",district_id.getSelectedItem().toString());
 
                map.put("station_id",station_id.getSelectedItem().toString());
                 map.put("batch_number",batch_id.getText().toString());

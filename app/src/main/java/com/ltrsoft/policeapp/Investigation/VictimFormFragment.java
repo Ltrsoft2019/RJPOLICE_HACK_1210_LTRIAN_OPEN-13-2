@@ -186,7 +186,7 @@ public class VictimFormFragment extends Fragment {
                 map.put("state_id","1");
                 map.put("district_id","1");
                 map.put("city_id","1");
-
+                map.put("investigation_witness_gender",gender);
 //                map.put("country_id",v_contryname.getText().toString());
 //                map.put("state_id",v_statename.getText().toString());
 //                map.put("district_id",v_distname.getText().toString());

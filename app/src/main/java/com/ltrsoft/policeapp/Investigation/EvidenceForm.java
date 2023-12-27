@@ -1,15 +1,21 @@
  package com.ltrsoft.policeapp.Investigation;
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,11 +41,14 @@ import android.content.DialogInterface;
 
 import com.ltrsoft.policeapp.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class EvidenceForm extends Fragment {
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 1000;
+
     public EvidenceForm() {    }
     private static final int REQUEST_IMAGE_GET = 1;
     public String encodeImage;
@@ -110,7 +119,7 @@ public class EvidenceForm extends Fragment {
         user_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGallery();
+                checkCameraPermissiomn();
             }
         });
 
@@ -134,18 +143,30 @@ show_img.setOnClickListener(new View.OnClickListener() {
 
         }
 
+    private void checkCameraPermissiomn() {
+        if (ContextCompat.checkSelfPermission(
+                getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    new String[]{Manifest.permission.CAMERA},
+                    CAMERA_PERMISSION_REQUEST_CODE
+            );
+        }
+    }
+
     public void senddata(){
         RequestQueue requestQueue= Volley.newRequestQueue(getContext());
         StringRequest stringRequest =new StringRequest(Request.Method.POST,
                 BASE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                showDoneDialog(getContext());
-
-                progressBar2.setVisibility(View.GONE);
-                e_save.setVisibility(View.VISIBLE);
-                e_desc.setText("");
-                ev_name.setText("");
+                if (response.equals("success")) {
+                    showDoneDialog(getContext());
+                    progressBar2.setVisibility(View.GONE);
+                    e_save.setVisibility(View.VISIBLE);
+                    e_desc.setText("");
+                    ev_name.setText("");
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -164,7 +185,6 @@ show_img.setOnClickListener(new View.OnClickListener() {
                 map.put("fir_id",firid.toString());
                 map.put("evidance_name",ev_name.getText().toString());
                 map.put("evidance_description",e_desc.getText().toString());
-
                 return map;
             }
         };
@@ -186,8 +206,6 @@ show_img.setOnClickListener(new View.OnClickListener() {
         // Create and display the AlertDialog
         AlertDialog dialog = builder.create();
         dialog.show();
-
-
 
 
 
@@ -227,9 +245,25 @@ show_img.setOnClickListener(new View.OnClickListener() {
     }
 
     private void encodeImg(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        encodeImage = android.util.Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Camera permission granted, proceed with camera-related tasks
+                openGallery();
+            } else {
+                Toast.makeText(getContext(), "access denied", Toast.LENGTH_SHORT).show();
+                checkCameraPermissiomn();
+            }
+        }
+    }
 }
 
 

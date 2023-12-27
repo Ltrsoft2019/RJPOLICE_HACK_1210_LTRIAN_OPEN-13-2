@@ -40,7 +40,6 @@ public class MyFireBaseNotification extends FirebaseMessagingService {
     private static final String CHANNEL_ID = "my_channel";
     private static final int NOTIFICATION_ID = 1;
     private static final String NOTIFICATION_URL = "rj.ltr-soft.com/public/police_api/data/complaint_read.php";
-
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
         super.onMessageReceived(message);
