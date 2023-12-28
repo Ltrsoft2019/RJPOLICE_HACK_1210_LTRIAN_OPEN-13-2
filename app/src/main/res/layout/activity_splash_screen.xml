@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Splash_Screen"
-    android:orientation="vertical"
+    android:background="#EBFCFB"
     android:gravity="center"
-    android:background="@color/white">
+    android:orientation="vertical"
+
+    tools:context=".Splash_Screen">
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:lottie_autoPlay="true"
-        android:background="#ffffff"
         app:lottie_cacheComposition="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/police"
@@ -26,9 +27,7 @@
         android:gravity="center"
         android:text="Rajasthan Police"
         android:textSize="30dp"
-        android:textStyle="bold"
-        />
-
+        android:textStyle="bold" />
 
 
 </LinearLayout>

@@ -66,7 +66,6 @@ public class VictimFormFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.victim_form_form, container, false);
 
-        vv_firname=view.findViewById(R.id.vv_firname);
         vv_fname=view.findViewById(R.id.vv_fname);
         vv_mname=view.findViewById(R.id.vv_mname);
         v_lname=view.findViewById(R.id.v_lname);

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#EBFCFB">
 
     <ImageView
         android:id="@+id/back2_btn"
@@ -92,7 +93,7 @@
         android:id="@+id/dob"
         android:layout_width="174dp"
         android:layout_height="42dp"
-        android:background="@drawable/d2"
+        android:background="@drawable/btn_bg2"
         android:layout_marginTop="55dp"
         android:inputType="date"
         android:paddingLeft="15dp"
@@ -110,7 +111,7 @@
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginTop="55dp"
-        android:background="@drawable/d3"
+        android:background="@drawable/btn_bg2"
         android:inputType="phone"
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,7 +129,7 @@
         android:layout_marginTop="55dp"
         android:inputType="phone"
         android:paddingLeft="15dp"
-        android:background="@drawable/d4"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.789"
@@ -142,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        app:backgroundTint="#222849"
+        app:backgroundTint="#1DB7AE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"

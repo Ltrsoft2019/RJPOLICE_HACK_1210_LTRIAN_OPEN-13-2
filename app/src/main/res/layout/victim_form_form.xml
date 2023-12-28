@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp"
     android:fillViewport="true"
-    >
+    android:background="#EBFCFB">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,31 +20,7 @@
             android:layout_height="23dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/back"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
-                android:text="FIR Name"
-                android:textSize="19dp" />
-            <EditText
-                android:id="@+id/vv_firname"
-                android:layout_width="200dp"
-                android:layout_height="60dp"
-                android:background="@drawable/d1"
-                android:paddingLeft="15dp"
-                android:layout_marginLeft="27dp"
-                android:layout_marginTop="30dp"/>
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -63,7 +39,7 @@
                 android:layout_marginLeft="50dp"
                 android:paddingLeft="15dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/d1" />
+                android:background="@drawable/btn_bg2" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +61,7 @@
                 android:layout_marginLeft="31dp"
                 android:layout_marginTop="30dp"
                 android:paddingLeft="15dp"
-                android:background="@drawable/d1" />
+                android:background="@drawable/btn_bg2" />
 
         </LinearLayout>
 
@@ -108,7 +84,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:paddingLeft="15dp"
-                android:background="@drawable/d1" />
+                android:background="@drawable/btn_bg2" />
         </LinearLayout>
 
 
@@ -133,7 +109,7 @@
                 android:hint="YYYY/MM/DD"
                 android:paddingLeft="15dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/d1" />
+                android:background="@drawable/btn_bg2" />
 
         </LinearLayout>
 
@@ -191,7 +167,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 android:paddingLeft="15dp"
                 android:inputType="number" />
         </LinearLayout>
@@ -214,7 +190,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 android:inputType="textPostalAddress"
                 android:paddingLeft="15dp" />
         </LinearLayout>
@@ -242,7 +218,7 @@
                 android:layout_marginTop="30dp"
                 android:paddingLeft="15dp"
                 android:inputType="textEmailAddress"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 />
         </LinearLayout>
 
@@ -310,7 +286,7 @@
                 android:layout_marginTop="30dp"
                 android:paddingLeft="15dp"
                 android:inputType="text"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 />
         </LinearLayout>
 
@@ -335,7 +311,7 @@
                 android:layout_marginTop="30dp"
                 android:inputType="text"
                 android:paddingLeft="15dp"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 />
         </LinearLayout>
 
@@ -359,7 +335,7 @@
                 android:paddingLeft="15dp"
                 android:layout_marginTop="30dp"
                 android:inputType="text"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 />
         </LinearLayout>
 
@@ -383,7 +359,7 @@
                 android:layout_marginTop="30dp"
                 android:inputType="text"
                 android:paddingLeft="15dp"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 />
         </LinearLayout>
 
@@ -407,7 +383,7 @@
                 android:layout_marginTop="30dp"
                 android:paddingLeft="15dp"
                 android:inputType="number"
-                android:background="@drawable/d1"
+                android:background="@drawable/btn_bg2"
                 />
         </LinearLayout>
 
@@ -423,6 +399,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Submit"
+            app:backgroundTint="#1DB7AE"
             android:layout_marginTop="40dp"
             android:layout_gravity="center"/>
     </LinearLayout>

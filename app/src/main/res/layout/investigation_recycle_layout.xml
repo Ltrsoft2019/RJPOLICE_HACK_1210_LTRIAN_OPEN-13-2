@@ -8,14 +8,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/investigation_card"
         android:layout_width="350dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="35dp"
-        app:cardElevation="10dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="#c0f6f3"
+        app:cardElevation="5dp"
         app:cardCornerRadius="20dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="32dp"
         >
         <TextView
             android:layout_width="wrap_content"

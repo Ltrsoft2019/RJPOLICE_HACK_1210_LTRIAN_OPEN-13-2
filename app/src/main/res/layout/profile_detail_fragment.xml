@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-
+    android:background="#EBFCFB"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile.ProfileDetailFragment">
@@ -42,7 +42,7 @@
                 android:layout_marginTop="150dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/poiceid"
                 android:layout_width="300dp"
@@ -64,7 +64,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/batchno"
                 android:layout_width="300dp"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/fname"
                 android:layout_width="300dp"
@@ -130,7 +130,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/mname"
                 android:layout_width="300dp"
@@ -152,7 +152,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/lname"
                 android:layout_width="300dp"
@@ -174,7 +174,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/pemail"
                 android:layout_width="300dp"
@@ -197,7 +197,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/pgender"
                 android:layout_width="300dp"
@@ -239,7 +239,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/mno"
                 android:layout_width="300dp"
@@ -261,7 +261,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/alno"
                 android:layout_width="300dp"
@@ -285,7 +285,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/adress"
                 android:layout_width="300dp"
@@ -307,7 +307,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/stateid"
                 android:layout_width="300dp"
@@ -329,7 +329,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/districtid"
                 android:layout_width="300dp"
@@ -351,7 +351,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/cityid"
                 android:layout_width="300dp"
@@ -394,7 +394,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="65dp"/>
 
-            <EditText
+            <TextView
                 android:textAlignment="center"
                 android:id="@+id/policeadhar"
                 android:layout_width="300dp"
@@ -426,7 +426,6 @@
                 android:layout_below="@id/policeadhar"
                 android:layout_marginLeft="170dp"
                 android:layout_marginTop="20dp"/>
-
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

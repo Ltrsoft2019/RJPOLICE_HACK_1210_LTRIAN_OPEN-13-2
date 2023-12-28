@@ -177,7 +177,9 @@ public class Registration_three extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        senddata();
                         Toast.makeText(getContext(), "error "+error.toString(), Toast.LENGTH_SHORT).show();
+
                     }
                 })
         {
@@ -263,47 +265,70 @@ public class Registration_three extends Fragment {
         requestQueue.add(request);
     }
     public void senddata(){
-       requestQueue= Volley.newRequestQueue(getContext());
-        StringRequest stringRequest =new StringRequest(Request.Method.POST,
-                BASE_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getContext(), "Registration Successfully"+response.toString(), Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.GONE);
-                submit_reg.setVisibility(View.VISIBLE);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.main_container, new LoginFragment())
-                        .commit();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.INVISIBLE);
-                submit_reg.setVisibility(View.VISIBLE);
-                Toast.makeText(getContext(), "volley error "+error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
+        requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("success")) {
+                            Toast.makeText(getContext(), "response "+response.toString(), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getContext(), "response" + response.toString(), Toast.LENGTH_SHORT).show();
+                            Log.d("response = ", response.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        submit_reg.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getContext(), "error = "+error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String,String> map=new HashMap<>();
-                map.put("police_dob",v1.toString());
-                map.put("police_mobile",v2.toString());
-                map.put("police_adhar",v3.toString());
-                map.put("police_gender",v4.toString());
-                map.put("police_fname",v5.toString());
-                map.put("police_mname",v6.toString());
-                map.put("police_lname",v7.toString());
-                map.put("police_email",v8.toString());
-                map.put("police_password",v9.toString());
-                map.put("police_photo_path",v9.toString());
-                map.put("police_addrddress",district_id.getSelectedItem().toString());
+                HashMap<String, String> map = new HashMap<>();
+                //     map.put("police_dob",v1.toString());
+//                map.put("police_mobile1",v2.toString());
+//                map.put("police_mobile2",v2.toString());
+//                map.put("police_adhar",v3.toString());
+//                map.put("police_gender",v4.toString());
+//                map.put("police_fname",v5.toString());
+//                map.put("police_mname",v6.toString());
+//                map.put("police_lname",v7.toString());
+//                map.put("police_email",v8.toString());
+//                map.put("police_password",v9.toString());
+//                map.put("police_photo_path",v9.toString());
+//                map.put("police_addrddress",district_id.getSelectedItem().toString());
+//               map.put("station_id",station_id.getSelectedItem().toString());
+//                map.put("batch_number",batch_id.getText().toString());
+//                map.put("position_id",position_id.getSelectedItem().toString());
+//                map.put("city_id",ciry_id.getSelectedItem().toString());
+//                map.put("district_id",district_id.getSelectedItem().toString());
+//                map.put("authority",);
 
-               map.put("station_id",station_id.getSelectedItem().toString());
-                map.put("batch_number",batch_id.getText().toString());
-                map.put("position_id",position_id.getSelectedItem().toString());
-                map.put("city_id",ciry_id.getSelectedItem().toString());
-                map.put("district_id",district_id.getSelectedItem().toString());
+                map.put("batch_number", "0000");
+                map.put("station_id", "1");
+                map.put("police_fname", "0000");
+                map.put("police_mname", "0000");
+                map.put("police_lname", "0000");
+                map.put("police_email", "0000");
+                map.put("police_password", "0000");
+                map.put("police_dob", "0000");
+                map.put("police_adhar", "0000");
+                map.put("police_mobile1", "0000");
+                map.put("police_mobile2", "0000");
+                map.put("police_photo_path", "0000");
+                map.put("police_address", "0000");
+                map.put("country_id", "1");
+                map.put("state_id", "1");
+                map.put("district_id", "1");
+                map.put("city_id", "1");
+                map.put("position_id", "4");
+                map.put("police_latitude", "0000");
+                map.put("police_longitude", "0000");
                 return map;
             }
         };

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#EBFCFB">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -23,13 +24,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First Name"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintVertical_bias="0.473" />
 
     <TextView
         android:id="@+id/textView2"
@@ -37,13 +38,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Middle Name"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.503" />
 
     <TextView
         android:id="@+id/textView3"
@@ -51,13 +52,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Last Name"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548" />
+        app:layout_constraintVertical_bias="0.602" />
 
     <TextView
         android:id="@+id/textView4"
@@ -65,13 +66,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Emai ID"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.702" />
 
     <TextView
         android:id="@+id/textView5"
@@ -79,13 +80,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="Password"
-        android:textSize="16sp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.812" />
 
     <Button
         android:id="@+id/reg1_btn"
@@ -93,82 +94,82 @@
         android:layout_height="wrap_content"
         android:text="Next"
         android:textSize="20dp"
-        app:backgroundTint="#222849"
+        app:backgroundTint="#1db7ae"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913" />
+        app:layout_constraintVertical_bias="0.945" />
 
     <EditText
         android:id="@+id/create_fname"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
-        android:background="@drawable/d1"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426"
+        app:layout_constraintVertical_bias="0.465"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/create_mname"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/d2"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
+        app:layout_constraintVertical_bias="0.544"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/create_lname"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/d3"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59"
+        app:layout_constraintVertical_bias="0.643"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/create_email"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/d4"
+        android:background="@drawable/btn_bg2"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679"
+        app:layout_constraintVertical_bias="0.743"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/create_password"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/d5"
+        android:background="@drawable/btn_bg2"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765"
+        app:layout_constraintVertical_bias="0.842"
         tools:ignore="MissingConstraints" />
 
     <ImageView

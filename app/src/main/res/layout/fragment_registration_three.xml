@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#EBFCFB">
 
     <ImageView
         android:id="@+id/image"
@@ -128,7 +129,7 @@
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
-        android:background="@drawable/spinner2"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
@@ -141,7 +142,7 @@
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
-        android:background="@drawable/spinner2"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
@@ -151,9 +152,9 @@
 
     <Spinner
         android:id="@+id/position_id"
-        android:layout_width="194dp"
+        android:layout_width="162dp"
         android:layout_height="39dp"
-        android:background="@drawable/spinner2"
+        android:background="@drawable/btn_bg2"
         android:paddingLeft="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +168,7 @@
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
-        android:background="@drawable/spinner2"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
@@ -180,7 +181,7 @@
         android:layout_width="162dp"
         android:layout_height="39dp"
         android:paddingLeft="12dp"
-        android:background="@drawable/spinner2"
+        android:background="@drawable/btn_bg2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.819"
@@ -205,7 +206,7 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:textSize="20dp"
-        app:backgroundTint="#222849"
+        android:backgroundTint="#1DB7AE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
